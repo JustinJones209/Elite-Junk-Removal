@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors
+     Navy = trust anchor (headlines, dark sections, footer).
+     Orange/amber = signature color (accents + CTAs). */
+  --color-navy: #1e3a5f;
+  --color-navy-dark: #162d4a;
+  --color-navy-light: #254870;
+  --color-safety-orange: #f97316;
+  --color-safety-orange-dark: #ea580c;
+  --color-amber: #fbbf24; /* warm gold — gradient start + light accents */
+  --color-amber-dark: #f59e0b;
+  --color-gray-light: #f8f9fa;
+
+  /* Fonts */
+  --font-heading: var(--font-poppins), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+
+  /* Numeric font-weight utilities (font-400 … font-800) used across the UI */
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+  --font-weight-800: 800;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+/* --- Brand gradients (amber → orange warm gold) --- */
+
+/* Solid gradient fill for CTAs, badges, sticky bar, etc. */
+.bg-brand-gradient {
+  background-image: linear-gradient(
+    135deg,
+    var(--color-amber) 0%,
+    var(--color-safety-orange) 55%,
+    var(--color-safety-orange-dark) 100%
+  );
+}
+
+/* Gradient clipped to text — used for accent words in headings. */
+.text-brand-gradient {
+  background-image: linear-gradient(
+    120deg,
+    var(--color-amber-dark) 0%,
+    var(--color-safety-orange) 60%,
+    var(--color-safety-orange-dark) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Deep navy gradient for dark sections/bands. */
+.bg-navy-gradient {
+  background-image: linear-gradient(
+    160deg,
+    var(--color-navy-light) 0%,
+    var(--color-navy) 45%,
+    var(--color-navy-dark) 100%
+  );
+}
+
+/* Subtle warm wash for light section backgrounds. */
+.bg-warm-wash {
+  background-image: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    var(--color-gray-light) 55%,
+    color-mix(in srgb, var(--color-amber) 12%, #ffffff) 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
