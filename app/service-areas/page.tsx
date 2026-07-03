@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { MapPin, Phone } from "lucide-react";
 import { ServiceAreaMap } from "@/components/ui/ServiceAreaMap";
 import { CTAButton } from "@/components/ui/CTAButton";
-import {
-  SERVICE_AREAS,
-  SERVICE_REGION,
-  PHONE_DISPLAY,
-  PHONE_TEL,
-} from "@/lib/site";
+import { CITY_PAGES } from "@/lib/cities";
+import { breadcrumbSchema } from "@/lib/schema";
+import { SERVICE_REGION, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Service Areas",
@@ -15,6 +13,11 @@ export const metadata: Metadata = {
     "Elite Junk Removal serves Tyler, Bullard, Whitehouse, Flint, Palestine, Lindale, Jacksonville, Rusk, Longview, Kilgore, and all of East Texas.",
   alternates: { canonical: "/service-areas" },
 };
+
+const breadcrumbs = breadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "Service Areas", path: "/service-areas" },
+]);
 
 // TODO(launch): Verify these ZIP codes with Gustavo and expand as needed.
 const ZIP_CODES = [
@@ -25,6 +28,11 @@ const ZIP_CODES = [
 export default function ServiceAreasPage() {
   return (
     <div className="bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
+
       {/* Header */}
       <div className="bg-gray-light">
         <div className="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 md:py-20 lg:px-8">
@@ -54,13 +62,15 @@ export default function ServiceAreasPage() {
             Cities &amp; Towns We Serve
           </h2>
           <ul className="mx-auto grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-            {SERVICE_AREAS.map((city) => (
-              <li
-                key={city}
-                className="flex items-center gap-2 rounded-lg border border-gray-100 bg-white px-4 py-3 shadow-sm"
-              >
-                <MapPin className="h-4 w-4 flex-shrink-0 text-safety-orange" aria-hidden="true" />
-                <span className="font-600 text-gray-700">{city}</span>
+            {CITY_PAGES.map((city) => (
+              <li key={city.slug}>
+                <Link
+                  href={`/service-areas/${city.slug}`}
+                  className="flex items-center gap-2 rounded-lg border border-gray-100 bg-white px-4 py-3 shadow-sm transition-colors hover:border-safety-orange"
+                >
+                  <MapPin className="h-4 w-4 flex-shrink-0 text-safety-orange" aria-hidden="true" />
+                  <span className="font-600 text-gray-700">{city.name}</span>
+                </Link>
               </li>
             ))}
           </ul>

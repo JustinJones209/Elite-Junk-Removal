@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { CITY_PAGES } from "@/lib/cities";
 import { SITE_URL } from "@/lib/site";
 
 /**
@@ -13,5 +14,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/quote`, lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/service-areas`, lastModified, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE_URL}/faq`, lastModified, changeFrequency: "monthly", priority: 0.6 },
+    ...CITY_PAGES.map((city) => ({
+      url: `${SITE_URL}/service-areas/${city.slug}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
   ];
 }

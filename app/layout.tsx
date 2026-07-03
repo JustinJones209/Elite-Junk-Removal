@@ -133,6 +133,10 @@ export default function RootLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          {/* Scroll clearance so the fixed StickyCallBar never covers the
+              last interactive element (e.g. the quote form's submit button)
+              at the bottom of a page on mobile. */}
+          <div className="h-20 md:hidden" aria-hidden="true" />
           <StickyCallBar />
         </MotionProvider>
       </body>

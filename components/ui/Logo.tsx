@@ -7,9 +7,9 @@ interface LogoProps {
 /**
  * Refined text wordmark for Elite Junk Removal.
  *
- * A type-driven lockup: "Elite Junk" set bold in the heading font with a
- * spaced "REMOVAL" kicker beneath, anchored by a slim amber→orange gradient
- * bar as the brand device. No icon — the name carries it.
+ * A one-line lockup: "Elite" in the amber→orange brand gradient, "Junk
+ * Removal" in bold navy, anchored by a slim gradient bar as the brand
+ * device. No icon — the name carries it.
  */
 export function Logo({ variant = "light", className = "" }: LogoProps) {
   const primaryText = variant === "dark" ? "text-white" : "text-navy";
@@ -21,13 +21,8 @@ export function Logo({ variant = "light", className = "" }: LogoProps) {
         aria-hidden="true"
         className="h-9 w-1.5 shrink-0 rounded-full bg-brand-gradient"
       />
-      <span className="flex flex-col leading-none">
-        <span className={`font-heading text-xl font-800 tracking-tight ${primaryText}`}>
-          Elite Junk
-        </span>
-        <span className="text-brand-gradient font-heading text-[0.62rem] font-700 uppercase tracking-[0.34em]">
-          Removal
-        </span>
+      <span className={`font-heading text-xl font-800 tracking-tight whitespace-nowrap ${primaryText}`}>
+        <span className="text-brand-gradient">Elite</span> Junk Removal
       </span>
     </span>
   );

@@ -1,14 +1,8 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
-import {
-  PHONE_DISPLAY,
-  PHONE_TEL,
-  EMAIL,
-  BUSINESS,
-  SOCIALS,
-  SERVICE_AREAS,
-} from "@/lib/site";
+import { CITY_PAGES } from "@/lib/cities";
+import { PHONE_DISPLAY, PHONE_TEL, EMAIL, BUSINESS, SOCIALS } from "@/lib/site";
 
 // Inline brand glyphs — lucide-react no longer ships brand icons.
 function FacebookIcon({ className }: { className?: string }) {
@@ -102,8 +96,12 @@ export function Footer() {
               Service Areas
             </h2>
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-              {SERVICE_AREAS.map((city) => (
-                <li key={city}>{city}</li>
+              {CITY_PAGES.map((city) => (
+                <li key={city.slug}>
+                  <Link href={`/service-areas/${city.slug}`} className="transition-colors hover:text-white">
+                    {city.name}
+                  </Link>
+                </li>
               ))}
             </ul>
             <p className="mt-3 text-sm">+ surrounding East Texas</p>

@@ -1,9 +1,9 @@
-import Image from "next/image";
 import { Phone } from "lucide-react";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { TrustBadgeRow } from "@/components/ui/TrustBadgeRow";
+import { BeforeAfterSlider } from "@/components/ui/BeforeAfterSlider";
 import { PHONE_DISPLAY, PHONE_TEL, BUSINESS } from "@/lib/site";
-import { IMAGES } from "@/lib/images";
+import { BEFORE_AFTER } from "@/lib/images";
 
 /**
  * Above-the-fold hero: headline built on the slogan, two CTAs, hero photo,
@@ -44,18 +44,9 @@ export function Hero() {
             </p>
           </div>
 
-          {/* Hero image */}
+          {/* Hero image — real garage cleanout, drag to compare */}
           <div className="relative">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-2xl">
-              <Image
-                src={IMAGES.hero.src}
-                alt={IMAGES.hero.alt}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </div>
+            <BeforeAfterSlider pairs={[BEFORE_AFTER[0]]} />
           </div>
         </div>
 

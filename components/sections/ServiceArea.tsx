@@ -1,8 +1,10 @@
+import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceAreaMap } from "@/components/ui/ServiceAreaMap";
 import { Reveal } from "@/components/ui/Reveal";
-import { SERVICE_AREAS, SERVICE_REGION } from "@/lib/site";
+import { CITY_PAGES } from "@/lib/cities";
+import { SERVICE_REGION } from "@/lib/site";
 
 /** Service-area section: map placeholder + list of served cities. */
 export function ServiceArea() {
@@ -28,13 +30,15 @@ export function ServiceArea() {
                 Cities &amp; Towns We Serve
               </h3>
               <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {SERVICE_AREAS.map((city) => (
-                  <li
-                    key={city}
-                    className="flex items-center gap-2 rounded-lg bg-white px-3 py-2.5 shadow-sm"
-                  >
-                    <MapPin className="h-4 w-4 flex-shrink-0 text-safety-orange" aria-hidden="true" />
-                    <span className="font-600 text-gray-700">{city}</span>
+                {CITY_PAGES.map((city) => (
+                  <li key={city.slug}>
+                    <Link
+                      href={`/service-areas/${city.slug}`}
+                      className="flex items-center gap-2 rounded-lg bg-white px-3 py-2.5 shadow-sm transition-colors hover:bg-safety-orange/10"
+                    >
+                      <MapPin className="h-4 w-4 flex-shrink-0 text-safety-orange" aria-hidden="true" />
+                      <span className="font-600 text-gray-700">{city.name}</span>
+                    </Link>
                   </li>
                 ))}
               </ul>
