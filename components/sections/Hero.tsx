@@ -16,12 +16,12 @@ export function Hero() {
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* Copy */}
           <div className="text-center lg:text-left">
-            <p className="mb-4 inline-flex items-center rounded-full bg-safety-orange/10 px-4 py-1.5 text-sm font-600 text-safety-orange">
+            <p className="mb-4 inline-flex items-center rounded-full bg-gold/10 px-4 py-1.5 text-sm font-600 text-gold">
               Locally Owned in {BUSINESS.city}, {BUSINESS.regionName}
             </p>
-            <h1 className="font-heading text-4xl font-800 leading-[1.1] tracking-tight text-navy sm:text-5xl lg:text-6xl">
-              We&apos;ll Do the Hard Work So You Can Have the{" "}
-              <span className="text-brand-gradient">Clean Living</span>
+            <h1 className="font-heading text-4xl font-800 uppercase leading-[1.1] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+              You Call, We Haul, It&apos;s{" "}
+              <span className="text-brand-gradient">Gone</span>
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-lg text-gray-600 lg:mx-0">
               Reclaim your space from clutter. Fast, honest, full-service junk

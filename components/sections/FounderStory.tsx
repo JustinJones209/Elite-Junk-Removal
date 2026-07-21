@@ -6,8 +6,9 @@ import { BUSINESS } from "@/lib/site";
 import { IMAGES } from "@/lib/images";
 
 /**
- * "Meet Gustavo" founder story — photo, warm-but-tight bio, slogan tie-in,
- * and a Family Owned & Operated callout. Trust/credibility section.
+ * "Meet Gus" team story — photo, warm-but-tight bio, slogan tie-in, and a
+ * Locally Owned & Operated callout. Trust/credibility section. Gus is the
+ * business's sales/manager contact, not the owner — don't claim otherwise.
  */
 export function FounderStory() {
   return (
@@ -26,11 +27,11 @@ export function FounderStory() {
                   className="object-cover"
                 />
               </div>
-              {/* Family Owned badge */}
+              {/* Locally Owned badge */}
               <div className="bg-brand-gradient absolute -bottom-4 left-6 flex items-center gap-2 rounded-full px-5 py-3 text-white shadow-lg">
                 <Heart className="h-5 w-5 fill-white" aria-hidden="true" />
                 <span className="font-heading text-sm font-700">
-                  Family Owned &amp; Operated
+                  Locally Owned &amp; Operated
                 </span>
               </div>
             </div>
@@ -39,23 +40,24 @@ export function FounderStory() {
           {/* Story */}
           <Reveal delay={0.1}>
             <div>
-              <p className="mb-3 text-sm font-600 uppercase tracking-widest text-safety-orange">
-                Meet the Owner
+              <p className="mb-3 text-sm font-600 uppercase tracking-widest text-gold">
+                Meet the Team
               </p>
-              <h2 className="font-heading text-3xl font-800 text-navy md:text-4xl">
-                Meet Gustavo Morales
+              <h2 className="font-heading text-3xl font-800 text-ink md:text-4xl">
+                Meet Gus Morales
               </h2>
               <div className="mt-5 space-y-4 text-lg leading-relaxed text-gray-600">
                 <p>
-                  Gus is a husband and father of two energetic boys, and he
-                  built Elite Junk Removal on a standard set by his mentor:
-                  &ldquo;Hard work and clean living.&rdquo;
+                  Gus runs sales and day-to-day operations for Call Me Gone
+                  Junk Removal — he&apos;s usually the voice you&apos;ll hear
+                  when you call, and the one making sure every job gets done
+                  right.
                 </p>
                 <p>
                   No shortcuts, no mess left behind — just an honest day&apos;s
                   work and a job done with a spirit of excellence.
                 </p>
-                <p className="font-heading text-xl font-600 italic text-navy">
+                <p className="font-heading text-xl font-600 italic text-ink">
                   &ldquo;{BUSINESS.slogan}&rdquo;
                 </p>
               </div>

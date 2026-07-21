@@ -25,7 +25,7 @@ export function FAQPreview() {
             <div className="mt-8 text-center">
               <Link
                 href="/faq"
-                className="inline-flex items-center gap-1.5 font-heading font-700 text-safety-orange transition-colors hover:text-safety-orange-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-safety-orange"
+                className="inline-flex items-center gap-1.5 font-heading font-700 text-gold transition-colors hover:text-gold-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
               >
                 See all FAQs
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />

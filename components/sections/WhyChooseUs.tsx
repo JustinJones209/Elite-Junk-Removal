@@ -32,10 +32,10 @@ const PILLARS: Pillar[] = [
   },
 ];
 
-/** Dark trust section highlighting the four core reasons to choose Elite. */
+/** Dark trust section highlighting the four core reasons to choose us. */
 export function WhyChooseUs() {
   return (
-    <section className="bg-navy py-16 md:py-24">
+    <section className="bg-ink py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading
@@ -50,7 +50,7 @@ export function WhyChooseUs() {
           {PILLARS.map((pillar, i) => (
             <Reveal key={pillar.title} delay={i * 0.06}>
               <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-safety-orange/15 text-safety-orange">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gold/15 text-gold">
                   <pillar.icon className="h-7 w-7" aria-hidden="true" />
                 </div>
                 <h3 className="mb-2 font-heading text-lg font-700 text-white">

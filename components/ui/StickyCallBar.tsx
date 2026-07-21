@@ -30,7 +30,7 @@ export function StickyCallBar() {
         href={`tel:${PHONE_TEL}`}
         tabIndex={visible ? 0 : -1}
         className="flex items-center justify-center gap-3 w-full bg-brand-gradient text-white py-4 px-6 pb-[max(1rem,env(safe-area-inset-bottom))] font-heading font-700 text-lg shadow-[0_-4px_20px_rgba(0,0,0,0.15)]"
-        aria-label={`Call Elite Junk Removal now at ${PHONE_DISPLAY}`}
+        aria-label={`Call Call Me Gone Junk Removal now at ${PHONE_DISPLAY}`}
       >
         <Phone className="w-5 h-5" aria-hidden="true" />
         Call Now: {PHONE_DISPLAY}

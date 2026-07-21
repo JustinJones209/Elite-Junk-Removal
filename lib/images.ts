@@ -1,5 +1,5 @@
 /**
- * Site imagery. Real Elite Junk Removal photos live in /public/photos; the
+ * Site imagery. Real Call Me Gone Junk Removal photos live in /public/photos; the
  * remaining Unsplash entries are temporary placeholders awaiting real photos.
  */
 
@@ -7,10 +7,10 @@ const unsplash = (id: string, w = 1200) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
 
 export const IMAGES = {
-  // Real photo — Gus, owner of Elite Junk Removal.
+  // Real photo — Gus, sales/manager at Call Me Gone Junk Removal.
   founder: {
     src: "/photos/gus.jpg",
-    alt: "Gus Morales, owner of Elite Junk Removal",
+    alt: "Gus Morales of Call Me Gone Junk Removal",
   },
 } as const;
 
@@ -25,8 +25,8 @@ export const BEFORE_AFTER = [
     label: "Garage Cleanout",
     beforeSrc: "/photos/garage-before.png",
     afterSrc: "/photos/garage-after.png",
-    beforeAlt: "Garage packed with clutter before Elite Junk Removal cleared it out",
-    afterAlt: "The same garage cleared out and clean after Elite Junk Removal",
+    beforeAlt: "Garage packed with clutter before Call Me Gone Junk Removal cleared it out",
+    afterAlt: "The same garage cleared out and clean after Call Me Gone Junk Removal",
   },
   {
     label: "Living Room Cleanout",
@@ -41,6 +41,6 @@ export const BEFORE_AFTER = [
     beforeSrc: "/photos/yard-before.png",
     afterSrc: "/photos/yard-after.png",
     beforeAlt: "Yard covered in branches and storm debris before haul-away",
-    afterAlt: "Clean, cleared yard after Elite Junk Removal hauled off the debris",
+    afterAlt: "Clean, cleared yard after Call Me Gone Junk Removal hauled off the debris",
   },
 ] as const;

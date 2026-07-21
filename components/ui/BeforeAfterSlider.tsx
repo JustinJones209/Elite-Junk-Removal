@@ -87,7 +87,7 @@ export function BeforeAfterSlider({ pairs }: BeforeAfterSliderProps) {
           className="object-cover"
           draggable={false}
         />
-        <span className="absolute right-3 top-3 z-10 rounded-full bg-safety-orange px-3 py-1 text-xs font-600 text-white shadow">
+        <span className="absolute right-3 top-3 z-10 rounded-full bg-gold px-3 py-1 text-xs font-600 text-white shadow">
           After
         </span>
 
@@ -104,7 +104,7 @@ export function BeforeAfterSlider({ pairs }: BeforeAfterSliderProps) {
             className="object-cover"
             draggable={false}
           />
-          <span className="absolute left-3 top-3 rounded-full bg-navy px-3 py-1 text-xs font-600 text-white shadow">
+          <span className="absolute left-3 top-3 rounded-full bg-ink px-3 py-1 text-xs font-600 text-white shadow">
             Before
           </span>
         </div>
@@ -123,7 +123,7 @@ export function BeforeAfterSlider({ pairs }: BeforeAfterSliderProps) {
             aria-valuenow={Math.round(position)}
             onPointerDown={onPointerDown}
             onKeyDown={onKeyDown}
-            className="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full bg-white text-navy shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-safety-orange"
+            className="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full bg-white text-ink shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           >
             <MoveHorizontal className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -137,7 +137,7 @@ export function BeforeAfterSlider({ pairs }: BeforeAfterSliderProps) {
             type="button"
             onClick={() => go(-1)}
             aria-label="Previous example"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-navy transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-safety-orange"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-ink transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           >
             <ChevronLeft className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -155,7 +155,7 @@ export function BeforeAfterSlider({ pairs }: BeforeAfterSliderProps) {
                   setPosition(50);
                 }}
                 className={`h-2.5 rounded-full transition-all ${
-                  i === index ? "w-6 bg-safety-orange" : "w-2.5 bg-gray-300 hover:bg-gray-400"
+                  i === index ? "w-6 bg-gold" : "w-2.5 bg-gray-300 hover:bg-gray-400"
                 }`}
               />
             ))}
@@ -165,7 +165,7 @@ export function BeforeAfterSlider({ pairs }: BeforeAfterSliderProps) {
             type="button"
             onClick={() => go(1)}
             aria-label="Next example"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-navy transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-safety-orange"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-ink transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           >
             <ChevronRight className="h-5 w-5" aria-hidden="true" />
           </button>

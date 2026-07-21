@@ -22,16 +22,16 @@ export function ServiceAreaMap() {
 
   return (
     <div
-      className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-safety-orange/5 via-gray-light to-navy/5 shadow-inner"
+      className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-gold/5 via-gray-light to-ink/5 shadow-inner"
       role="img"
-      aria-label={`Map showing Elite Junk Removal's service area centered on ${BUSINESS.city}, ${BUSINESS.region} and surrounding East Texas`}
+      aria-label={`Map showing Call Me Gone Junk Removal's service area centered on ${BUSINESS.city}, ${BUSINESS.region} and surrounding East Texas`}
     >
       {/* Subtle grid to read as a map */}
       <div
         className="absolute inset-0 opacity-[0.15]"
         style={{
           backgroundImage:
-            "linear-gradient(to right, #1e3a5f 1px, transparent 1px), linear-gradient(to bottom, #1e3a5f 1px, transparent 1px)",
+            "linear-gradient(to right, #161616 1px, transparent 1px), linear-gradient(to bottom, #161616 1px, transparent 1px)",
           backgroundSize: "48px 48px",
         }}
         aria-hidden="true"
@@ -39,7 +39,7 @@ export function ServiceAreaMap() {
 
       {/* Service-radius ring around the hub */}
       <div
-        className="absolute h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-safety-orange/40 bg-safety-orange/5 sm:h-56 sm:w-56"
+        className="absolute h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-gold/40 bg-gold/5 sm:h-56 sm:w-56"
         style={{ top: "38%", left: "46%" }}
         aria-hidden="true"
       />
@@ -55,8 +55,8 @@ export function ServiceAreaMap() {
           <MapPin
             className={
               pin.primary
-                ? "h-9 w-9 fill-safety-orange text-white drop-shadow"
-                : "h-6 w-6 fill-navy text-white drop-shadow"
+                ? "h-9 w-9 fill-gold text-white drop-shadow"
+                : "h-6 w-6 fill-ink text-white drop-shadow"
             }
           />
         </div>
@@ -64,7 +64,7 @@ export function ServiceAreaMap() {
 
       {/* Hub label */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white/90 px-4 py-2 text-center shadow backdrop-blur-sm">
-        <span className="font-heading text-sm font-700 text-navy">
+        <span className="font-heading text-sm font-700 text-ink">
           Serving {BUSINESS.city} &amp; All of East Texas
         </span>
       </div>

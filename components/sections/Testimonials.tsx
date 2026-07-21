@@ -17,7 +17,7 @@ export function Testimonials() {
           <div className="mt-4 flex items-center justify-center gap-2">
             <div className="flex gap-0.5" aria-hidden="true">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-safety-orange text-safety-orange" />
+                <Star key={i} className="h-5 w-5 fill-gold text-gold" />
               ))}
             </div>
             <span className="font-600 text-gray-600">

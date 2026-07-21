@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Inter } from "next/font/google";
+import { Oswald, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
@@ -14,10 +14,10 @@ import {
   SOCIALS,
 } from "@/lib/site";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const oswald = Oswald({
+  variable: "--font-oswald",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["500", "600", "700"],
   display: "swap",
 });
 
@@ -34,36 +34,36 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default:
-      "Elite Junk Removal | Fast, Honest Junk Removal in Tyler & East Texas",
-    template: "%s | Elite Junk Removal",
+      "Call Me Gone Junk Removal | Fast, Honest Junk Removal in Tyler & East Texas",
+    template: "%s | Call Me Gone Junk Removal",
   },
   description:
-    "Elite Junk Removal serves Tyler, TX and all of East Texas. Same-day service, free estimates, locally owned. Call now or get a free quote online.",
+    "Call Me Gone Junk Removal serves Tyler, TX and all of East Texas. Same-day service, free estimates, locally owned. Call now or get a free quote online.",
   keywords: [
     "junk removal Tyler TX",
     "junk removal East Texas",
     "furniture removal Tyler",
     "estate cleanout Tyler TX",
     "appliance removal East Texas",
-    "Gustavo Morales",
+    "Gus Morales",
   ],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Elite Junk Removal | Tyler & East Texas",
+    title: "Call Me Gone Junk Removal | Tyler & East Texas",
     description:
       "Fast, honest junk removal serving Tyler, TX and all of East Texas. Free estimates, same-day service, locally owned.",
     type: "website",
     locale: "en_US",
     url: SITE_URL,
-    siteName: "Elite Junk Removal",
+    siteName: "Call Me Gone Junk Removal",
     // TODO(launch): Add a real 1200x630 OG image at /public/og-image.jpg
     // and reference it here (e.g. images: ["/og-image.jpg"]).
   },
   twitter: {
     card: "summary_large_image",
-    title: "Elite Junk Removal | Tyler & East Texas",
+    title: "Call Me Gone Junk Removal | Tyler & East Texas",
     description:
       "Fast, honest junk removal serving Tyler, TX and all of East Texas.",
   },
@@ -78,9 +78,10 @@ const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: BUSINESS.name,
-  founder: {
+  employee: {
     "@type": "Person",
-    name: BUSINESS.owner,
+    name: BUSINESS.manager,
+    jobTitle: BUSINESS.managerTitle,
   },
   address: {
     "@type": "PostalAddress",
@@ -96,7 +97,7 @@ const localBusinessSchema = {
   email: EMAIL,
   url: SITE_URL,
   description:
-    "Elite Junk Removal provides fast, honest junk removal services across Tyler and all of East Texas. Same-day service, free estimates, locally owned.",
+    "Call Me Gone Junk Removal provides fast, honest junk removal services across Tyler and all of East Texas. Same-day service, free estimates, locally owned.",
   priceRange: "$$",
   openingHoursSpecification: [
     {
@@ -123,7 +124,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${inter.variable} h-full`}>
+    <html lang="en" className={`${oswald.variable} ${inter.variable} h-full`}>
       <body className="flex min-h-full flex-col antialiased">
         <script
           type="application/ld+json"

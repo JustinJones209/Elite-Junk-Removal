@@ -59,7 +59,7 @@ export async function submitQuote(values: unknown): Promise<QuoteActionResult> {
   const apiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.QUOTE_TO_EMAIL;
   const fromEmail =
-    process.env.QUOTE_FROM_EMAIL || "Elite Junk Removal <onboarding@resend.dev>";
+    process.env.QUOTE_FROM_EMAIL || "Call Me Gone Junk Removal <onboarding@resend.dev>";
 
   // Dev / not-yet-configured fallback: log instead of send.
   if (!apiKey || !toEmail) {
@@ -74,7 +74,7 @@ export async function submitQuote(values: unknown): Promise<QuoteActionResult> {
   }
 
   const html = `
-    <h2 style="font-family:sans-serif;">New quote request — Elite Junk Removal</h2>
+    <h2 style="font-family:sans-serif;">New quote request — Call Me Gone Junk Removal</h2>
     <table style="font-family:sans-serif;border-collapse:collapse;">
       ${rows
         .map(

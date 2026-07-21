@@ -20,7 +20,7 @@ export const CITY_PAGES: CityPage[] = [
     name: "Tyler",
     tagline: "Our home base — the Rose City",
     blurb:
-      "Tyler is home base for Elite Junk Removal, so it's usually where we can move fastest. We've cleared garages, estates, and yards all over town, and if you're in Tyler there's a good chance we can be at your door the same day you call.",
+      "Tyler is home base for Call Me Gone Junk Removal, so it's usually where we can move fastest. We've cleared garages, estates, and yards all over town, and if you're in Tyler there's a good chance we can be at your door the same day you call.",
   },
   {
     slug: "bullard",

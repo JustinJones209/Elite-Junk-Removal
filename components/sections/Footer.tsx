@@ -26,6 +26,7 @@ function InstagramIcon({ className }: { className?: string }) {
 const navLinks = [
   { href: "/#services", label: "Services" },
   { href: "/#how-it-works", label: "How It Works" },
+  { href: "/pricing", label: "Pricing" },
   { href: "/#reviews", label: "Reviews" },
   { href: "/faq", label: "FAQ" },
   { href: "/service-areas", label: "Service Areas" },
@@ -36,7 +37,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-navy-dark text-white/80">
+    <footer className="bg-ink-dark text-white/80">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
@@ -53,8 +54,8 @@ export function Footer() {
                   href={SOCIALS.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Elite Junk Removal on Facebook"
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-safety-orange"
+                  aria-label="Call Me Gone Junk Removal on Facebook"
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-gold"
                 >
                   <FacebookIcon className="h-4 w-4 text-white" />
                 </a>
@@ -64,8 +65,8 @@ export function Footer() {
                   href={SOCIALS.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Elite Junk Removal on Instagram"
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-safety-orange"
+                  aria-label="Call Me Gone Junk Removal on Instagram"
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-gold"
                 >
                   <InstagramIcon className="h-4 w-4 text-white" />
                 </a>
@@ -140,8 +141,8 @@ export function Footer() {
             Fast, honest junk removal serving Tyler and all of East Texas.
           </p>
           <p>
-            &copy; {year} {BUSINESS.name}. All rights reserved. Owned &amp; operated by{" "}
-            {BUSINESS.owner}.
+            &copy; {year} {BUSINESS.name}. All rights reserved. Locally owned
+            &amp; operated.
           </p>
         </div>
       </div>

@@ -31,11 +31,11 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpenIndex(isOpen ? null : i)}
-                className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left font-heading font-600 text-navy transition-colors hover:bg-gray-50 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-safety-orange"
+                className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left font-heading font-600 text-ink transition-colors hover:bg-gray-50 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-gold"
               >
                 <span>{faq.question}</span>
                 <ChevronDown
-                  className={`h-5 w-5 flex-shrink-0 text-safety-orange transition-transform duration-200 ${
+                  className={`h-5 w-5 flex-shrink-0 text-gold transition-transform duration-200 ${
                     isOpen ? "rotate-180" : ""
                   }`}
                   aria-hidden="true"

@@ -38,7 +38,7 @@ export async function generateMetadata({
     description,
     alternates: { canonical: `/service-areas/${city.slug}` },
     openGraph: {
-      title: `${title} | Elite Junk Removal`,
+      title: `${title} | Call Me Gone Junk Removal`,
       description,
     },
   };
@@ -94,16 +94,16 @@ export default async function CityPage({
       <div className="bg-gray-light">
         <div className="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 md:py-20 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-500">
-            <Link href="/" className="hover:text-safety-orange">Home</Link>
+            <Link href="/" className="hover:text-gold">Home</Link>
             <span className="mx-2">/</span>
-            <Link href="/service-areas" className="hover:text-safety-orange">Service Areas</Link>
+            <Link href="/service-areas" className="hover:text-gold">Service Areas</Link>
             <span className="mx-2">/</span>
             <span className="text-gray-700">{city.name}</span>
           </nav>
-          <p className="mb-3 text-sm font-600 uppercase tracking-widest text-safety-orange">
+          <p className="mb-3 text-sm font-600 uppercase tracking-widest text-gold">
             {city.tagline}
           </p>
-          <h1 className="font-heading text-4xl font-800 text-navy md:text-5xl">
+          <h1 className="font-heading text-4xl font-800 text-ink md:text-5xl">
             Junk Removal in {city.name}, TX
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">{city.blurb}</p>
@@ -126,7 +126,7 @@ export default async function CityPage({
 
       {/* Services */}
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        <h2 className="mb-10 text-center font-heading text-2xl font-700 text-navy md:text-3xl">
+        <h2 className="mb-10 text-center font-heading text-2xl font-700 text-ink md:text-3xl">
           What We Haul in {city.name}
         </h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -139,7 +139,7 @@ export default async function CityPage({
       {/* Testimonials */}
       <div className="bg-gray-light py-14 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-10 text-center font-heading text-2xl font-700 text-navy md:text-3xl">
+          <h2 className="mb-10 text-center font-heading text-2xl font-700 text-ink md:text-3xl">
             Trusted Across East Texas
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
@@ -152,7 +152,7 @@ export default async function CityPage({
 
       {/* Nearby areas — internal linking */}
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        <h2 className="mb-6 text-center font-heading text-xl font-700 text-navy">
+        <h2 className="mb-6 text-center font-heading text-xl font-700 text-ink">
           We Also Serve Nearby
         </h2>
         <ul className="mx-auto grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
@@ -160,9 +160,9 @@ export default async function CityPage({
             <li key={c.slug}>
               <Link
                 href={`/service-areas/${c.slug}`}
-                className="flex items-center gap-2 rounded-lg border border-gray-100 bg-white px-3 py-2.5 shadow-sm transition-colors hover:border-safety-orange"
+                className="flex items-center gap-2 rounded-lg border border-gray-100 bg-white px-3 py-2.5 shadow-sm transition-colors hover:border-gold"
               >
-                <MapPin className="h-4 w-4 flex-shrink-0 text-safety-orange" aria-hidden="true" />
+                <MapPin className="h-4 w-4 flex-shrink-0 text-gold" aria-hidden="true" />
                 <span className="font-600 text-gray-700">{c.name}</span>
               </Link>
             </li>
@@ -170,7 +170,7 @@ export default async function CityPage({
         </ul>
 
         {/* CTA */}
-        <div className="bg-navy-gradient mx-auto mt-12 max-w-3xl rounded-2xl p-8 text-center">
+        <div className="bg-ink-gradient mx-auto mt-12 max-w-3xl rounded-2xl p-8 text-center">
           <h2 className="font-heading text-2xl font-700 text-white">
             Ready to clear the clutter in {city.name}?
           </h2>

@@ -7,11 +7,11 @@ import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 /** Full-width closing CTA band with repeated trust badges. */
 export function FinalCTA() {
   return (
-    <section className="bg-navy-gradient relative overflow-hidden py-16 md:py-24">
+    <section className="bg-ink-gradient relative overflow-hidden py-16 md:py-24">
       {/* Warm orange glow accent */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-24 left-1/2 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-safety-orange/25 blur-3xl"
+        className="pointer-events-none absolute -top-24 left-1/2 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-gold/25 blur-3xl"
       />
       <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <Reveal>

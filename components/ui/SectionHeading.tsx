@@ -20,7 +20,7 @@ export function SectionHeading({
       {kicker && (
         <p
           className={`text-sm font-body font-600 uppercase tracking-widest mb-3 ${
-            light ? "text-safety-orange" : "text-safety-orange"
+            light ? "text-gold" : "text-gold"
           }`}
         >
           {kicker}
@@ -28,7 +28,7 @@ export function SectionHeading({
       )}
       <h2
         className={`font-heading font-800 text-3xl md:text-4xl lg:text-5xl leading-tight mb-4 ${
-          light ? "text-white" : "text-navy"
+          light ? "text-white" : "text-ink"
         }`}
       >
         {heading}

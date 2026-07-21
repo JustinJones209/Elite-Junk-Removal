@@ -4,10 +4,12 @@ import { z } from "zod";
 export const SERVICE_TYPES = [
   "Furniture Removal",
   "Appliance Removal",
-  "Estate Cleanout",
-  "Construction Debris",
   "Garage / Attic Cleanout",
+  "Estate Cleanout",
+  "Storage / Shed Cleanout",
+  "Construction Debris",
   "Yard Waste",
+  "Eviction Cleanout",
   "Other / Not Sure",
 ] as const;
 

@@ -25,7 +25,7 @@ export function TrustBadgeRow({ light = false, className = "" }: TrustBadgeRowPr
           }`}
         >
           <Icon
-            className={`w-5 h-5 flex-shrink-0 ${light ? "text-safety-orange" : "text-safety-orange"}`}
+            className={`w-5 h-5 flex-shrink-0 ${light ? "text-gold" : "text-gold"}`}
             aria-hidden="true"
           />
           <span>{label}</span>

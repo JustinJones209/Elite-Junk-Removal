@@ -2,19 +2,19 @@
 
 @theme {
   /* Brand colors
-     Navy = trust anchor (headlines, dark sections, footer).
-     Orange/amber = signature color (accents + CTAs). */
-  --color-navy: #1e3a5f;
-  --color-navy-dark: #162d4a;
-  --color-navy-light: #254870;
-  --color-safety-orange: #f97316;
-  --color-safety-orange-dark: #ea580c;
-  --color-amber: #fbbf24; /* warm gold — gradient start + light accents */
-  --color-amber-dark: #f59e0b;
+     Ink = trust anchor (headlines, dark sections, footer) — near-black.
+     Gold/amber = signature color (accents + CTAs). */
+  --color-ink: #161616;
+  --color-ink-dark: #000000;
+  --color-ink-light: #2a2a2a;
+  --color-gold: #f2b705;
+  --color-gold-dark: #c98f06;
+  --color-amber: #ffd449; /* light gold — gradient start + highlights */
+  --color-amber-dark: #f0a202;
   --color-gray-light: #f8f9fa;
 
   /* Fonts */
-  --font-heading: var(--font-poppins), system-ui, sans-serif;
+  --font-heading: var(--font-oswald), system-ui, sans-serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
 
   /* Numeric font-weight utilities (font-400 … font-800) used across the UI */
@@ -55,8 +55,8 @@ h1, h2, h3, h4, h5, h6 {
   background-image: linear-gradient(
     135deg,
     var(--color-amber) 0%,
-    var(--color-safety-orange) 55%,
-    var(--color-safety-orange-dark) 100%
+    var(--color-gold) 55%,
+    var(--color-gold-dark) 100%
   );
 }
 
@@ -65,8 +65,8 @@ h1, h2, h3, h4, h5, h6 {
   background-image: linear-gradient(
     120deg,
     var(--color-amber-dark) 0%,
-    var(--color-safety-orange) 60%,
-    var(--color-safety-orange-dark) 100%
+    var(--color-gold) 60%,
+    var(--color-gold-dark) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -74,13 +74,13 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-text-fill-color: transparent;
 }
 
-/* Deep navy gradient for dark sections/bands. */
-.bg-navy-gradient {
+/* Deep ink gradient for dark sections/bands. */
+.bg-ink-gradient {
   background-image: linear-gradient(
     160deg,
-    var(--color-navy-light) 0%,
-    var(--color-navy) 45%,
-    var(--color-navy-dark) 100%
+    var(--color-ink-light) 0%,
+    var(--color-ink) 45%,
+    var(--color-ink-dark) 100%
   );
 }
 

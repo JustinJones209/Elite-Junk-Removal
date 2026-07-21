@@ -7,7 +7,7 @@ import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Get a Free Quote",
   description:
-    "Request a free, no-obligation junk removal quote from Elite Junk Removal. Serving Tyler and all of East Texas with same-day service.",
+    "Request a free, no-obligation junk removal quote from Call Me Gone Junk Removal. Serving Tyler and all of East Texas with same-day service.",
   alternates: { canonical: "/quote" },
 };
 
@@ -24,7 +24,7 @@ export default function QuotePage() {
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           {/* Left: pitch */}
           <div>
-            <h1 className="font-heading text-4xl font-800 leading-tight text-navy md:text-5xl">
+            <h1 className="font-heading text-4xl font-800 leading-tight text-ink md:text-5xl">
               Get Your Free Quote
             </h1>
             <p className="mt-4 text-lg text-gray-600">
@@ -35,7 +35,7 @@ export default function QuotePage() {
 
             <a
               href={`tel:${PHONE_TEL}`}
-              className="mt-6 inline-flex items-center gap-2 font-heading text-xl font-700 text-safety-orange transition-colors hover:text-safety-orange-dark"
+              className="mt-6 inline-flex items-center gap-2 font-heading text-xl font-700 text-gold transition-colors hover:text-gold-dark"
             >
               <Phone className="h-5 w-5" aria-hidden="true" />
               {PHONE_DISPLAY}
@@ -44,7 +44,7 @@ export default function QuotePage() {
             <ul className="mt-8 space-y-3">
               {points.map(({ icon: Icon, text }) => (
                 <li key={text} className="flex items-center gap-3 text-gray-700">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-safety-orange/10 text-safety-orange">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold/10 text-gold">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </span>
                   <span className="font-600">{text}</span>

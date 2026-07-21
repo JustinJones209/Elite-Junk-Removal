@@ -2,20 +2,22 @@
  * Central site configuration — single source of truth for business info,
  * contact details, and content data used across the site.
  *
- * TODO(launch): Swap every value marked "TODO" below with Gustavo's real
- * details before going live (phone number, address, email, social links, URL).
+ * TODO(launch): Swap every value marked "TODO" below with real details
+ * before going live (street address, hours, socials).
  */
 
 import type { LucideIcon } from "lucide-react";
 import {
   Sofa,
-  Refrigerator,
   Home,
   Hammer,
   Warehouse,
-  Leaf,
+  Trash2,
+  Building2,
   Zap,
-  FileText,
+  Handshake,
+  CheckCircle2,
+  ShieldCheck,
   MapPin,
   PhoneCall,
   ClipboardList,
@@ -28,20 +30,20 @@ import {
 /* -------------------------------------------------------------------------- */
 
 // PHONE_DISPLAY is what users see; PHONE_TEL is the dialable tel: value.
-export const PHONE_DISPLAY = "(903) 617-3940";
-export const PHONE_TEL = "+19036173940";
+export const PHONE_DISPLAY = "(903) 279-5441";
+export const PHONE_TEL = "+19032795441";
 
-// TODO(launch): Replace with the real contact email.
-export const EMAIL = "hello@elitejunkremoval.com";
+export const EMAIL = "callmegonejunk@yahoo.com";
 
-// TODO(launch): Replace with the production domain (used for canonical URLs,
-// OpenGraph, sitemap, and JSON-LD). Must be the live https URL.
-export const SITE_URL = "https://elitejunkremoval.com";
+// TODO(launch): Confirm callmegonejunk.com is live before pointing canonical
+// URLs, OpenGraph, sitemap, and JSON-LD at it (used here as the production domain).
+export const SITE_URL = "https://callmegonejunk.com";
 
 export const BUSINESS = {
-  name: "Elite Junk Removal",
-  owner: "Gustavo Morales",
-  slogan: "We'll do the hard work so you can have the clean living.",
+  name: "Call Me Gone Junk Removal",
+  manager: "Gus Morales",
+  managerTitle: "Sales / Manager",
+  slogan: "You Call, We Haul, It's Gone!",
   // TODO(launch): Replace with the real street address if the business
   // operates from a storefront/yard; otherwise keep city-level only.
   city: "Tyler",
@@ -53,9 +55,9 @@ export const BUSINESS = {
   hours: "Mon–Fri 7am–6pm · Sat 8am–4pm",
 } as const;
 
-// TODO(launch): Add real social profile URLs. Leave empty to hide an icon.
+// TODO(launch): Add real Instagram/Google profile URLs. Leave empty to hide an icon.
 export const SOCIALS = {
-  facebook: "",
+  facebook: "https://facebook.com/CallMeGoneJunkRemoval",
   instagram: "",
   google: "",
 } as const;
@@ -91,10 +93,10 @@ export interface TrustBadge {
 }
 
 export const TRUST_BADGES: TrustBadge[] = [
-  { icon: Zap, label: "Same-Day Service" },
-  { icon: FileText, label: "Free Estimates" },
-  { icon: MapPin, label: "Locally Owned" },
-  { icon: Truck, label: "We Haul Away" },
+  { icon: Zap, label: "Fast Service" },
+  { icon: Handshake, label: "Fair Prices" },
+  { icon: CheckCircle2, label: "Done Right" },
+  { icon: ShieldCheck, label: "Insured" },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -109,40 +111,40 @@ export interface Service {
 
 export const SERVICES: Service[] = [
   {
-    icon: Warehouse,
-    title: "Garage & Attic Cleanouts",
+    icon: Trash2,
+    title: "Junk Removal & Haul Off",
     description:
-      "Reclaim the space you've been meaning to use — whether you want parking, a home gym, or extra workspace, we'll clear years of clutter in a day!",
-  },
-  {
-    icon: Leaf,
-    title: "Yard Waste",
-    description:
-      "Branches, brush, fencing, and storm debris removed to leave your yard clean and clear.",
-  },
-  {
-    icon: Sofa,
-    title: "Furniture Removal",
-    description:
-      "Couches, mattresses, desks, and more — hauled out without a scratch on your walls or floors.",
-  },
-  {
-    icon: Refrigerator,
-    title: "Appliance Removal",
-    description:
-      "Old fridges, washers, dryers, and water heaters removed and recycled the responsible way.",
+      "Big or small, if it needs to go, we'll haul it off — furniture, appliances, junk piling up in the garage, you name it.",
   },
   {
     icon: Home,
-    title: "Estate Cleanouts",
+    title: "Full-Service Clean Outs",
     description:
-      "Full-home cleanouts handled with care and discretion during difficult transitions.",
+      "Garages, attics, basements, and sheds — we clear the whole space in one visit so you can finally use it again.",
+  },
+  {
+    icon: Sofa,
+    title: "Furniture & Appliance Removal",
+    description:
+      "Couches, mattresses, fridges, washers and dryers hauled out without a scratch on your walls or floors.",
   },
   {
     icon: Hammer,
-    title: "Construction Debris",
+    title: "Construction & Yard Debris",
     description:
-      "Post-remodel and job-site debris cleared fast so you can move on to the finish work.",
+      "Post-remodel job-site debris, branches, brush, and storm cleanup cleared fast so you can move on.",
+  },
+  {
+    icon: Warehouse,
+    title: "Storage Units & Estate Cleanouts",
+    description:
+      "Full storage-unit and estate cleanouts handled with care and discretion, including eviction cleanouts.",
+  },
+  {
+    icon: Building2,
+    title: "Residential & Commercial",
+    description:
+      "We handle homes and businesses alike — porches, decks, and property clean-out jobs of any size.",
   },
 ];
 
@@ -159,25 +161,25 @@ export interface ProcessStepData {
 export const PROCESS_STEPS: ProcessStepData[] = [
   {
     icon: PhoneCall,
-    title: "Book Online or Call",
+    title: "You Call",
     description:
-      "Reach out by phone or request a quote online — tell us what needs to go.",
+      "Reach out by phone or request a free quote online — tell us what needs to go.",
   },
   {
     icon: ClipboardList,
-    title: "Get a Free Quote",
+    title: "Get a Fair Price",
     description:
       "We give you an honest, upfront price. No hidden fees, no obligation.",
   },
   {
     icon: Truck,
-    title: "We Do the Heavy Lifting",
+    title: "We Haul",
     description:
       "Our crew shows up on time and hauls it all — you don't lift a finger.",
   },
   {
     icon: Sparkles,
-    title: "You Relax",
+    title: "It's Gone",
     description:
       "We sweep up and dispose or recycle responsibly. You enjoy the clean space.",
   },
@@ -198,7 +200,7 @@ export interface Testimonial {
 export const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "Gustavo and his crew cleared out my parents' garage in a single afternoon. Professional, respectful, and fairly priced. Couldn't ask for more.",
+      "Gus and his crew cleared out my parents' garage in a single afternoon. Professional, respectful, and fairly priced. Couldn't ask for more.",
     name: "Sarah",
     location: "Tyler, TX",
     rating: 5,
@@ -212,7 +214,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "After my remodel I had debris everywhere. Elite handled it all quickly and the quote was exactly what I paid. Honest local business.",
+      "After my remodel I had debris everywhere. Call Me Gone handled it all quickly and the quote was exactly what I paid. Honest local business.",
     name: "Deborah",
     location: "Lindale, TX",
     rating: 5,
@@ -239,17 +241,22 @@ export const FAQS: FAQ[] = [
   {
     question: "How much does junk removal cost?",
     answer:
-      "Pricing is based on the volume of junk (how much space it takes up in our truck) and the type of items. We always give you an honest, upfront quote before we start — with no hidden fees and no obligation to book.",
+      "Pricing is based on the volume of junk (how much space it takes up in our trailer) and the type of items. We always give you an honest, upfront quote before we start — with no hidden fees and no obligation to book. See our Pricing page for typical ranges.",
   },
   {
     question: "What items do you take?",
     answer:
-      "Furniture, appliances, mattresses, construction debris, yard waste, garage and attic clutter, estate cleanouts, and most household junk. We cannot take hazardous materials like paint, chemicals, or asbestos — just ask and we'll point you in the right direction.",
+      "Furniture, appliances, mattresses, construction debris, yard waste, garage and attic clutter, estate and storage-unit cleanouts, and most household junk. We cannot take hazardous materials like paint, chemicals, or asbestos — just ask and we'll point you in the right direction.",
   },
   {
     question: "How fast can you come out?",
     answer:
-      "In most cases we offer same-day or next-day service across Tyler and East Texas. Call us early and there's a good chance we can be there the same day.",
+      "In most cases we offer same-day or next-day service across Tyler and East Texas. Call us early and there's a good chance we can be there the same day. Same-day and emergency service may carry an added fee.",
+  },
+  {
+    question: "Do you offer any discounts?",
+    answer:
+      "Yes — 10% off for military, first responders, seniors (65+), and repeat customers. Discounts can't be combined, but we'll always apply whichever one saves you the most.",
   },
   {
     question: "Do I need to be present for the pickup?",
@@ -257,9 +264,9 @@ export const FAQS: FAQ[] = [
       "Not necessarily. Many customers arrange for us to access the items and handle payment remotely. We'll confirm the details with you when you book so everything goes smoothly.",
   },
   {
-    question: "How is pricing determined?",
+    question: "Does the quote include travel?",
     answer:
-      "We price by volume and labor — the more space your items take in the truck and the heavier the lift, the higher the cost. You'll always know the full price before we lift a thing.",
+      "Our estimates account for the job itself; jobs farther out from Tyler may include a travel fee, which we'll always disclose upfront before you book — never as a surprise on pickup day.",
   },
   {
     question: "What do you do with the junk?",

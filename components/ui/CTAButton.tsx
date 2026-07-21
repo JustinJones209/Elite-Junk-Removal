@@ -19,11 +19,11 @@ interface CTAButtonProps {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-brand-gradient text-white border-2 border-transparent shadow-lg shadow-safety-orange/25 hover:shadow-xl hover:shadow-safety-orange/40 hover:brightness-[1.06]",
+    "bg-brand-gradient text-white border-2 border-transparent shadow-lg shadow-gold/25 hover:shadow-xl hover:shadow-gold/40 hover:brightness-[1.06]",
   secondary:
-    "bg-transparent text-navy border-2 border-navy hover:bg-navy hover:text-white",
+    "bg-transparent text-ink border-2 border-ink hover:bg-ink hover:text-white",
   ghost:
-    "bg-transparent text-white border-2 border-white hover:bg-white hover:text-navy",
+    "bg-transparent text-white border-2 border-white hover:bg-white hover:text-ink",
 };
 
 const sizeClasses = {
@@ -47,7 +47,7 @@ export const CTAButton = forwardRef<HTMLButtonElement, CTAButtonProps>(
     },
     ref
   ) => {
-    const base = `inline-flex items-center justify-center gap-2 font-heading font-700 rounded-lg transition-colors duration-200 cursor-pointer select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-safety-orange ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+    const base = `inline-flex items-center justify-center gap-2 font-heading font-700 rounded-lg transition-colors duration-200 cursor-pointer select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
 
     const motionProps = {
       whileHover: { scale: 1.02 },

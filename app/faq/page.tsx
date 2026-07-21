@@ -8,7 +8,7 @@ import { FAQS, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   description:
-    "Answers to common questions about Elite Junk Removal — pricing, what we take, how fast we can come out, and responsible disposal across East Texas.",
+    "Answers to common questions about Call Me Gone Junk Removal — pricing, what we take, how fast we can come out, and responsible disposal across East Texas.",
   alternates: { canonical: "/faq" },
 };
 
@@ -46,14 +46,14 @@ export default function FAQPage() {
       {/* Header */}
       <div className="bg-gray-light">
         <div className="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 md:py-20 lg:px-8">
-          <p className="mb-3 text-sm font-600 uppercase tracking-widest text-safety-orange">
+          <p className="mb-3 text-sm font-600 uppercase tracking-widest text-gold">
             Questions
           </p>
-          <h1 className="font-heading text-4xl font-800 text-navy md:text-5xl">
+          <h1 className="font-heading text-4xl font-800 text-ink md:text-5xl">
             Frequently Asked Questions
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-            Everything you need to know about junk removal with Elite. Don&apos;t
+            Everything you need to know about junk removal with Call Me Gone. Don&apos;t
             see your question? Give us a call — we&apos;re happy to help.
           </p>
         </div>
@@ -64,7 +64,7 @@ export default function FAQPage() {
         <FAQAccordion faqs={FAQS} />
 
         {/* CTA */}
-        <div className="mx-auto mt-12 max-w-3xl rounded-2xl bg-navy p-8 text-center">
+        <div className="mx-auto mt-12 max-w-3xl rounded-2xl bg-ink p-8 text-center">
           <h2 className="font-heading text-2xl font-700 text-white">
             Still have questions?
           </h2>

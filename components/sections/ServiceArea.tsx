@@ -26,7 +26,7 @@ export function ServiceArea() {
 
           <Reveal delay={0.1}>
             <div>
-              <h3 className="mb-5 font-heading text-xl font-700 text-navy">
+              <h3 className="mb-5 font-heading text-xl font-700 text-ink">
                 Cities &amp; Towns We Serve
               </h3>
               <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -34,9 +34,9 @@ export function ServiceArea() {
                   <li key={city.slug}>
                     <Link
                       href={`/service-areas/${city.slug}`}
-                      className="flex items-center gap-2 rounded-lg bg-white px-3 py-2.5 shadow-sm transition-colors hover:bg-safety-orange/10"
+                      className="flex items-center gap-2 rounded-lg bg-white px-3 py-2.5 shadow-sm transition-colors hover:bg-gold/10"
                     >
-                      <MapPin className="h-4 w-4 flex-shrink-0 text-safety-orange" aria-hidden="true" />
+                      <MapPin className="h-4 w-4 flex-shrink-0 text-gold" aria-hidden="true" />
                       <span className="font-600 text-gray-700">{city.name}</span>
                     </Link>
                   </li>

@@ -22,7 +22,7 @@ export function HowItWorks() {
         <div className="relative mt-14">
           {/* Connecting line (desktop only) */}
           <div
-            className="absolute left-0 right-0 top-10 hidden h-0.5 bg-safety-orange/20 lg:block"
+            className="absolute left-0 right-0 top-10 hidden h-0.5 bg-gold/20 lg:block"
             aria-hidden="true"
           />
           <ol className="relative grid gap-12 lg:grid-cols-4 lg:gap-6">

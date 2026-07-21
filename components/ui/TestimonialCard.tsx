@@ -12,7 +12,7 @@ export function TestimonialCard({ quote, name, location, rating }: Testimonial) 
           <Star
             key={i}
             className={`h-5 w-5 ${
-              i < rating ? "fill-safety-orange text-safety-orange" : "text-gray-300"
+              i < rating ? "fill-gold text-gold" : "text-gray-300"
             }`}
             aria-hidden="true"
           />
@@ -22,7 +22,7 @@ export function TestimonialCard({ quote, name, location, rating }: Testimonial) 
         <p>&ldquo;{quote}&rdquo;</p>
       </blockquote>
       <figcaption className="mt-5 border-t border-gray-100 pt-4">
-        <span className="block font-heading font-700 text-navy">{name}</span>
+        <span className="block font-heading font-700 text-ink">{name}</span>
         <span className="block text-sm text-gray-500">{location}</span>
       </figcaption>
     </figure>

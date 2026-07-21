@@ -10,6 +10,7 @@ import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 const navLinks = [
   { href: "/#services", label: "Services" },
+  { href: "/pricing", label: "Pricing" },
   { href: "/#how-it-works", label: "How It Works" },
   { href: "/#reviews", label: "Reviews" },
   { href: "/faq", label: "FAQ" },
@@ -35,7 +36,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="shrink-0" aria-label="Elite Junk Removal home">
+          <Link href="/" className="shrink-0" aria-label="Call Me Gone Junk Removal home">
             <Logo variant="light" />
           </Link>
 
@@ -45,7 +46,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-body font-500 text-gray-700 hover:text-safety-orange transition-colors text-sm"
+                className="font-body font-500 text-gray-700 hover:text-gold transition-colors text-sm"
               >
                 {link.label}
               </Link>
@@ -56,7 +57,7 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-4">
             <a
               href={`tel:${PHONE_TEL}`}
-              className="flex items-center gap-2 font-body font-600 text-navy hover:text-safety-orange transition-colors"
+              className="flex items-center gap-2 font-body font-600 text-ink hover:text-gold transition-colors"
             >
               <Phone className="w-4 h-4" aria-hidden="true" />
               {PHONE_DISPLAY}
@@ -70,14 +71,14 @@ export function Header() {
           <div className="flex items-center gap-3 lg:hidden">
             <a
               href={`tel:${PHONE_TEL}`}
-              className="flex items-center justify-center w-9 h-9 rounded-full bg-safety-orange text-white"
+              className="flex items-center justify-center w-9 h-9 rounded-full bg-gold text-white"
               aria-label={`Call us now at ${PHONE_DISPLAY}`}
             >
               <Phone className="w-4 h-4" aria-hidden="true" />
             </a>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="flex items-center justify-center w-9 h-9 rounded-full border border-gray-200 text-navy"
+              className="flex items-center justify-center w-9 h-9 rounded-full border border-gray-200 text-ink"
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -109,7 +110,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="font-body font-500 text-gray-700 hover:text-safety-orange py-3 border-b border-gray-50 transition-colors"
+                  className="font-body font-500 text-gray-700 hover:text-gold py-3 border-b border-gray-50 transition-colors"
                 >
                   {link.label}
                 </Link>
