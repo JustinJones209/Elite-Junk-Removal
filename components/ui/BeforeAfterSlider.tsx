@@ -14,6 +14,8 @@ export interface BeforeAfterPair {
 
 interface BeforeAfterSliderProps {
   pairs: BeforeAfterPair[];
+  /** Flips caption/control colors for use on a dark or photo background. */
+  light?: boolean;
 }
 
 /**
@@ -23,7 +25,7 @@ interface BeforeAfterSliderProps {
  * Accessibility: the handle is a role="slider" with arrow-key support and
  * proper aria-value attributes.
  */
-export function BeforeAfterSlider({ pairs }: BeforeAfterSliderProps) {
+export function BeforeAfterSlider({ pairs, light = false }: BeforeAfterSliderProps) {
   const [index, setIndex] = useState(0);
   const [position, setPosition] = useState(50); // % revealed of the "before" image
   const containerRef = useRef<HTMLDivElement>(null);
@@ -137,7 +139,11 @@ export function BeforeAfterSlider({ pairs }: BeforeAfterSliderProps) {
             type="button"
             onClick={() => go(-1)}
             aria-label="Previous example"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 dark:border-white/20 text-ink dark:text-white transition-colors hover:bg-gray-100 dark:hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold ${
+              light
+                ? "border-white/30 text-white hover:bg-white/10"
+                : "border-gray-200 text-ink hover:bg-gray-100 dark:border-white/20 dark:text-white dark:hover:bg-white/10"
+            }`}
           >
             <ChevronLeft className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -155,7 +161,11 @@ export function BeforeAfterSlider({ pairs }: BeforeAfterSliderProps) {
                   setPosition(50);
                 }}
                 className={`h-2.5 rounded-full transition-all ${
-                  i === index ? "w-6 bg-gold" : "w-2.5 bg-gray-300 dark:bg-white/20 hover:bg-gray-400 dark:hover:bg-white/30"
+                  i === index
+                    ? "w-6 bg-gold"
+                    : light
+                      ? "w-2.5 bg-white/25 hover:bg-white/40"
+                      : "w-2.5 bg-gray-300 hover:bg-gray-400 dark:bg-white/20 dark:hover:bg-white/30"
                 }`}
               />
             ))}
@@ -165,14 +175,20 @@ export function BeforeAfterSlider({ pairs }: BeforeAfterSliderProps) {
             type="button"
             onClick={() => go(1)}
             aria-label="Next example"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 dark:border-white/20 text-ink dark:text-white transition-colors hover:bg-gray-100 dark:hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold ${
+              light
+                ? "border-white/30 text-white hover:bg-white/10"
+                : "border-gray-200 text-ink hover:bg-gray-100 dark:border-white/20 dark:text-white dark:hover:bg-white/10"
+            }`}
           >
             <ChevronRight className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
       )}
 
-      <p className="mt-3 text-center text-sm font-600 text-gray-500 dark:text-white/60">{pair.label}</p>
+      <p className={`mt-3 text-center text-sm font-600 ${light ? "text-white/70" : "text-gray-500 dark:text-white/60"}`}>
+        {pair.label}
+      </p>
     </div>
   );
 }

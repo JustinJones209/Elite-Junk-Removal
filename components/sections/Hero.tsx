@@ -7,79 +7,103 @@ import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 import { BEFORE_AFTER } from "@/lib/images";
 
 /**
- * Above-the-fold hero: the trailer photo as a full-bleed (but uncropped —
- * object-contain, so the whole trailer stays visible) background
- * (TODO(launch): swap for a real video carousel once footage is ready),
- * centered headline/CTAs on top, then the garage before/after slider, then
- * the trust-badge strip. Respects system light/dark mode throughout.
+ * Above-the-fold hero: the trailer wrap photo as a sharp, full-bleed
+ * background (TODO(launch): swap for a real video carousel once footage is
+ * ready), with a dark scrim for legibility, a big centered headline/CTAs on
+ * top, then the garage before/after slider, then the trust-badge strip.
+ * Always dark regardless of site theme — the photo itself is the backdrop,
+ * same convention as the other fixed-dark bands on the site (WhyChooseUs,
+ * Footer, etc).
  */
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white dark:bg-ink">
-      {/* Trailer photo background — object-contain so the full trailer is
-          always visible rather than cropped in by object-cover. Softly
-          blurred and scrimmed so its own text doesn't compete with the
-          headline sitting on top. */}
-      <div className="absolute inset-0">
+    <section className="relative overflow-hidden bg-ink">
+      {/* Photo banner — height is capped (rather than spanning the whole
+          section incl. the slider/badges below) so the low-res source photo
+          isn't stretched further than necessary and stays as sharp as
+          possible. TODO(launch): replace with a higher-resolution export of
+          this photo — the current source is only 1282px wide, which is the
+          ceiling for how crisp this can render full-bleed on large screens. */}
+      <div className="relative flex min-h-[520px] items-center overflow-hidden sm:min-h-[560px] lg:min-h-[640px]">
         <Image
           src="/photos/trailer.png"
           alt=""
           aria-hidden="true"
           fill
           priority
-          className="object-contain blur-md scale-105"
+          quality={90}
+          className="object-cover"
         />
-        <div className="absolute inset-0 bg-white/90 dark:bg-ink/90" />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-white/85 to-white dark:from-ink/50 dark:via-ink/85 dark:to-ink" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-transparent to-transparent" />
+
+        <div className="relative mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-5xl text-center">
+            <style>{`
+              @keyframes heroBrushStrokeReveal {
+                from {
+                  clip-path: polygon(
+                    0% 0%, 0% 0%, -4% 10%, 3% 20%, -3% 30%, 4% 40%,
+                    -4% 50%, 3% 60%, -3% 70%, 4% 80%, -2% 90%, 0% 100%, 0% 100%
+                  );
+                }
+                to {
+                  clip-path: polygon(
+                    0% 0%, 106% 0%, 102% 10%, 109% 20%, 103% 30%, 110% 40%,
+                    102% 50%, 109% 60%, 103% 70%, 110% 80%, 104% 90%, 106% 100%, 0% 100%
+                  );
+                }
+              }
+            `}</style>
+            <h1
+              className="uppercase leading-[0.95] tracking-wide text-white"
+              style={{
+                fontFamily: "var(--font-bangers)",
+                fontSize: "clamp(2.75rem, 3.2vw + 2rem, 6.5rem)",
+                WebkitTextStroke: "1.25px white",
+                animation: "heroBrushStrokeReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both",
+              }}
+            >
+              You Call, We Haul, It&apos;s{" "}
+              <span
+                className="text-brand-gradient"
+                style={{ WebkitTextStroke: "1.25px #c8890a" }}
+              >
+                Gone!
+              </span>
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-white/80 sm:text-xl">
+              Reclaim your space from clutter. Fast, honest, full-service junk
+              removal in Tyler &amp; all of East Texas. Same-day service, free
+              estimates, and a crew that treats your home like their own.
+            </p>
+
+            <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+              <CTAButton href={`tel:${PHONE_TEL}`} size="lg">
+                <Phone className="h-5 w-5" aria-hidden="true" />
+                Call Now — {PHONE_DISPLAY}
+              </CTAButton>
+              <CTAButton href="/pricing" variant="secondary" size="lg">
+                See Pricing
+              </CTAButton>
+            </div>
+
+            <p className="mt-4 text-sm font-600 text-white/60">
+              Same-day service available · No obligation
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8 lg:py-24">
-        {/* Copy */}
-        <div className="mx-auto max-w-3xl text-center">
-          <style>{`
-            @keyframes heroAntonFadeUp {
-              from { opacity: 0; transform: translateY(14px); }
-              to { opacity: 1; transform: translateY(0); }
-            }
-          `}</style>
-          <h1
-            className="text-4xl uppercase leading-[1.05] tracking-wide text-ink dark:text-white sm:text-5xl lg:text-6xl"
-            style={{
-              fontFamily: "var(--font-anton)",
-              animation: "heroAntonFadeUp 0.7s ease-out both",
-            }}
-          >
-            You Call, We Haul, It&apos;s <span className="text-brand-gradient">Gone!</span>
-          </h1>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-gray-600 dark:text-white/75">
-            Reclaim your space from clutter. Fast, honest, full-service junk
-            removal in Tyler &amp; all of East Texas. Same-day service, free
-            estimates, and a crew that treats your home like their own.
-          </p>
-
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <CTAButton href={`tel:${PHONE_TEL}`} size="lg">
-              <Phone className="h-5 w-5" aria-hidden="true" />
-              Call Now — {PHONE_DISPLAY}
-            </CTAButton>
-            <CTAButton href="/pricing" variant="secondary" size="lg">
-              See Pricing
-            </CTAButton>
-          </div>
-
-          <p className="mt-4 text-sm font-600 text-gray-500 dark:text-white/60">
-            Same-day service available · No obligation
-          </p>
-        </div>
-
+      <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         {/* Garage cleanout slider */}
-        <div className="relative mx-auto mt-12 max-w-4xl">
-          <BeforeAfterSlider pairs={[BEFORE_AFTER[0]]} />
+        <div className="relative mx-auto max-w-4xl">
+          <BeforeAfterSlider pairs={[BEFORE_AFTER[0]]} light />
         </div>
 
         {/* Trust badges */}
-        <div className="mt-12 border-t border-gray-200 dark:border-white/10 pt-8">
-          <TrustBadgeRow />
+        <div className="mt-12 border-t border-white/15 pt-8">
+          <TrustBadgeRow light />
         </div>
       </div>
     </section>

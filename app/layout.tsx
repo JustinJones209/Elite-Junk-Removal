@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Oswald, Inter, Anton } from "next/font/google";
+import { Oswald, Inter, Bangers } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
@@ -28,9 +28,10 @@ const inter = Inter({
   display: "swap",
 });
 
-// Used only for the Hero H1 — a heavier, more impactful display face than Oswald.
-const anton = Anton({
-  variable: "--font-anton",
+// Used only for the Hero H1 — a bold, brush-lettering-style display face
+// that echoes the logo's paintbrush wordmark.
+const bangers = Bangers({
+  variable: "--font-bangers",
   subsets: ["latin"],
   weight: "400",
   display: "swap",
@@ -132,7 +133,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${oswald.variable} ${inter.variable} ${anton.variable} h-full`}>
+    <html
+      lang="en"
+      className={`${oswald.variable} ${inter.variable} ${bangers.variable} h-full`}
+    >
       <body className="flex min-h-full flex-col antialiased">
         <script
           type="application/ld+json"
