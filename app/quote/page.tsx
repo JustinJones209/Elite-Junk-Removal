@@ -19,15 +19,15 @@ const points = [
 
 export default function QuotePage() {
   return (
-    <div className="bg-gray-light">
+    <div className="bg-ink">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           {/* Left: pitch */}
           <div>
-            <h1 className="font-heading text-4xl font-800 leading-tight text-ink md:text-5xl">
+            <h1 className="font-heading text-4xl font-800 leading-tight text-white md:text-5xl">
               Get Your Free Quote
             </h1>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-white/70">
               Fill out the form and we&apos;ll get back to you quickly with an
               honest price — no obligation, no pressure. Prefer to talk? Give us
               a call.
@@ -43,7 +43,7 @@ export default function QuotePage() {
 
             <ul className="mt-8 space-y-3">
               {points.map(({ icon: Icon, text }) => (
-                <li key={text} className="flex items-center gap-3 text-gray-700">
+                <li key={text} className="flex items-center gap-3 text-white/80">
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold/10 text-gold">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </span>
@@ -59,7 +59,7 @@ export default function QuotePage() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-gray-200 pt-8">
+        <div className="mt-14 border-t border-white/10 pt-8">
           <TrustBadgeRow />
         </div>
       </div>

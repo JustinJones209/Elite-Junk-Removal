@@ -21,7 +21,7 @@ const variantClasses: Record<Variant, string> = {
   primary:
     "bg-brand-gradient text-white border-2 border-transparent shadow-lg shadow-gold/25 hover:shadow-xl hover:shadow-gold/40 hover:brightness-[1.06]",
   secondary:
-    "bg-transparent text-ink border-2 border-ink hover:bg-ink hover:text-white",
+    "bg-transparent text-gold border-2 border-gold hover:bg-gold hover:text-white",
   ghost:
     "bg-transparent text-white border-2 border-white hover:bg-white hover:text-ink",
 };

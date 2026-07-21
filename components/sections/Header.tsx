@@ -29,8 +29,8 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full transition-shadow duration-300 bg-white ${
-        scrolled ? "shadow-md" : "shadow-none"
+      className={`sticky top-0 z-40 w-full border-b border-white/10 bg-ink transition-shadow duration-300 ${
+        scrolled ? "shadow-md shadow-black/30" : "shadow-none"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,7 +46,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-body font-500 text-gray-700 hover:text-gold transition-colors text-sm"
+                className="font-body font-500 text-white/80 hover:text-gold transition-colors text-sm"
               >
                 {link.label}
               </Link>
@@ -57,7 +57,7 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-4">
             <a
               href={`tel:${PHONE_TEL}`}
-              className="flex items-center gap-2 font-body font-600 text-ink hover:text-gold transition-colors"
+              className="flex items-center gap-2 font-body font-600 text-white hover:text-gold transition-colors"
             >
               <Phone className="w-4 h-4" aria-hidden="true" />
               {PHONE_DISPLAY}
@@ -78,7 +78,7 @@ export function Header() {
             </a>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="flex items-center justify-center w-9 h-9 rounded-full border border-gray-200 text-ink"
+              className="flex items-center justify-center w-9 h-9 rounded-full border border-white/20 text-white"
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -102,7 +102,7 @@ export function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden border-t border-gray-100 bg-white overflow-hidden"
+            className="lg:hidden border-t border-white/10 bg-ink overflow-hidden"
           >
             <nav className="px-4 pt-4 pb-6 flex flex-col gap-1" aria-label="Mobile navigation">
               {navLinks.map((link) => (
@@ -110,7 +110,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="font-body font-500 text-gray-700 hover:text-gold py-3 border-b border-gray-50 transition-colors"
+                  className="font-body font-500 text-white/80 hover:text-gold py-3 border-b border-white/10 transition-colors"
                 >
                   {link.label}
                 </Link>

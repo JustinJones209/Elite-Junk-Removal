@@ -21,7 +21,7 @@ export function TrustBadgeRow({ light = false, className = "" }: TrustBadgeRowPr
           key={label}
           role="listitem"
           className={`flex items-center gap-2 text-sm font-body font-600 ${
-            light ? "text-white" : "text-gray-700"
+            light ? "text-white" : "text-white/80"
           }`}
         >
           <Icon

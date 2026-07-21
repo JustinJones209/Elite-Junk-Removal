@@ -11,7 +11,12 @@
   --color-gold-dark: #96690a;
   --color-amber: #e0a819; /* light gold — gradient start + highlights */
   --color-amber-dark: #b17d08;
-  --color-gray-light: #f8f9fa;
+
+  /* Dark-theme surfaces: the site's base is now the ink black, with two
+     slightly lighter tones for card/panel surfaces and section alternation. */
+  --color-gray-light: #1c1c1c; /* alternating section background (was light gray) */
+  --color-surface: #202020; /* cards/panels sitting on the page background */
+  --color-surface-border: #333333; /* hairline border for cards on dark surfaces */
 
   /* Fonts */
   --font-heading: var(--font-oswald), system-ui, sans-serif;
@@ -26,8 +31,8 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
+  --background: #161616;
+  --foreground: #f5f5f5;
 }
 
 html {
@@ -81,16 +86,6 @@ h1, h2, h3, h4, h5, h6 {
     var(--color-ink-light) 0%,
     var(--color-ink) 45%,
     var(--color-ink-dark) 100%
-  );
-}
-
-/* Subtle warm wash for light section backgrounds. */
-.bg-warm-wash {
-  background-image: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    var(--color-gray-light) 55%,
-    color-mix(in srgb, var(--color-amber) 12%, #ffffff) 100%
   );
 }
 

@@ -7,7 +7,7 @@ import { TESTIMONIALS } from "@/lib/site";
 /** Customer reviews — grid on desktop, carousel on mobile. */
 export function Testimonials() {
   return (
-    <section id="reviews" className="bg-white py-16 md:py-24">
+    <section id="reviews" className="bg-gray-light py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading
@@ -20,7 +20,7 @@ export function Testimonials() {
                 <Star key={i} className="h-5 w-5 fill-gold text-gold" />
               ))}
             </div>
-            <span className="font-600 text-gray-600">
+            <span className="font-600 text-white/70">
               Trusted across East Texas
             </span>
           </div>

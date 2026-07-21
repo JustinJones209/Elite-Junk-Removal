@@ -80,7 +80,7 @@ export default async function CityPage({
   const otherCities = CITY_PAGES.filter((c) => c.slug !== city.slug);
 
   return (
-    <div className="bg-white">
+    <div className="bg-ink">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
@@ -93,20 +93,20 @@ export default async function CityPage({
       {/* Header */}
       <div className="bg-gray-light">
         <div className="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 md:py-20 lg:px-8">
-          <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-500">
+          <nav aria-label="Breadcrumb" className="mb-4 text-sm text-white/60">
             <Link href="/" className="hover:text-gold">Home</Link>
             <span className="mx-2">/</span>
             <Link href="/service-areas" className="hover:text-gold">Service Areas</Link>
             <span className="mx-2">/</span>
-            <span className="text-gray-700">{city.name}</span>
+            <span className="text-white/80">{city.name}</span>
           </nav>
           <p className="mb-3 text-sm font-600 uppercase tracking-widest text-gold">
             {city.tagline}
           </p>
-          <h1 className="font-heading text-4xl font-800 text-ink md:text-5xl">
+          <h1 className="font-heading text-4xl font-800 text-white md:text-5xl">
             Junk Removal in {city.name}, TX
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">{city.blurb}</p>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">{city.blurb}</p>
 
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <CTAButton href={`tel:${PHONE_TEL}`} size="lg">
@@ -118,7 +118,7 @@ export default async function CityPage({
             </CTAButton>
           </div>
 
-          <div className="mt-10 border-t border-gray-200 pt-8">
+          <div className="mt-10 border-t border-white/10 pt-8">
             <TrustBadgeRow />
           </div>
         </div>
@@ -126,7 +126,7 @@ export default async function CityPage({
 
       {/* Services */}
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        <h2 className="mb-10 text-center font-heading text-2xl font-700 text-ink md:text-3xl">
+        <h2 className="mb-10 text-center font-heading text-2xl font-700 text-white md:text-3xl">
           What We Haul in {city.name}
         </h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -139,7 +139,7 @@ export default async function CityPage({
       {/* Testimonials */}
       <div className="bg-gray-light py-14 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-10 text-center font-heading text-2xl font-700 text-ink md:text-3xl">
+          <h2 className="mb-10 text-center font-heading text-2xl font-700 text-white md:text-3xl">
             Trusted Across East Texas
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
@@ -152,7 +152,7 @@ export default async function CityPage({
 
       {/* Nearby areas — internal linking */}
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        <h2 className="mb-6 text-center font-heading text-xl font-700 text-ink">
+        <h2 className="mb-6 text-center font-heading text-xl font-700 text-white">
           We Also Serve Nearby
         </h2>
         <ul className="mx-auto grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
@@ -160,10 +160,10 @@ export default async function CityPage({
             <li key={c.slug}>
               <Link
                 href={`/service-areas/${c.slug}`}
-                className="flex items-center gap-2 rounded-lg border border-gray-100 bg-white px-3 py-2.5 shadow-sm transition-colors hover:border-gold"
+                className="flex items-center gap-2 rounded-lg border border-surface-border bg-surface px-3 py-2.5 shadow-sm transition-colors hover:border-gold"
               >
                 <MapPin className="h-4 w-4 flex-shrink-0 text-gold" aria-hidden="true" />
-                <span className="font-600 text-gray-700">{c.name}</span>
+                <span className="font-600 text-white/80">{c.name}</span>
               </Link>
             </li>
           ))}

@@ -50,7 +50,7 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
             type="button"
             onClick={() => go(-1)}
             aria-label="Previous review"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-ink transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           >
             <ChevronLeft className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -63,7 +63,7 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
                 aria-label={`Go to review ${i + 1}`}
                 aria-current={i === index}
                 className={`h-2.5 rounded-full transition-all ${
-                  i === index ? "w-6 bg-gold" : "w-2.5 bg-gray-300 hover:bg-gray-400"
+                  i === index ? "w-6 bg-gold" : "w-2.5 bg-white/20 hover:bg-white/30"
                 }`}
               />
             ))}
@@ -72,7 +72,7 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
             type="button"
             onClick={() => go(1)}
             aria-label="Next review"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-ink transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           >
             <ChevronRight className="h-5 w-5" aria-hidden="true" />
           </button>

@@ -6,24 +6,24 @@ import type { Testimonial } from "@/lib/site";
  */
 export function TestimonialCard({ quote, name, location, rating }: Testimonial) {
   return (
-    <figure className="flex h-full flex-col rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+    <figure className="flex h-full flex-col rounded-2xl border border-surface-border bg-surface p-6 shadow-sm">
       <div className="mb-4 flex gap-0.5" aria-label={`${rating} out of 5 stars`}>
         {Array.from({ length: 5 }).map((_, i) => (
           <Star
             key={i}
             className={`h-5 w-5 ${
-              i < rating ? "fill-gold text-gold" : "text-gray-300"
+              i < rating ? "fill-gold text-gold" : "text-white/20"
             }`}
             aria-hidden="true"
           />
         ))}
       </div>
-      <blockquote className="flex-1 text-gray-700">
+      <blockquote className="flex-1 text-white/80">
         <p>&ldquo;{quote}&rdquo;</p>
       </blockquote>
-      <figcaption className="mt-5 border-t border-gray-100 pt-4">
-        <span className="block font-heading font-700 text-ink">{name}</span>
-        <span className="block text-sm text-gray-500">{location}</span>
+      <figcaption className="mt-5 border-t border-surface-border pt-4">
+        <span className="block font-heading font-700 text-white">{name}</span>
+        <span className="block text-sm text-white/60">{location}</span>
       </figcaption>
     </figure>
   );

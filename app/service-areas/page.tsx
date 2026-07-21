@@ -27,7 +27,7 @@ const ZIP_CODES = [
 
 export default function ServiceAreasPage() {
   return (
-    <div className="bg-white">
+    <div className="bg-ink">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
@@ -39,10 +39,10 @@ export default function ServiceAreasPage() {
           <p className="mb-3 text-sm font-600 uppercase tracking-widest text-gold">
             Where We Work
           </p>
-          <h1 className="font-heading text-4xl font-800 text-ink md:text-5xl">
+          <h1 className="font-heading text-4xl font-800 text-white md:text-5xl">
             Serving Tyler &amp; All of East Texas
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
             Based in Tyler, we cover a wide radius across East Texas. If your
             town isn&apos;t listed but you&apos;re nearby, reach out — chances
             are we can still help.
@@ -58,7 +58,7 @@ export default function ServiceAreasPage() {
 
         {/* Cities */}
         <div className="mt-14">
-          <h2 className="mb-6 text-center font-heading text-2xl font-700 text-ink">
+          <h2 className="mb-6 text-center font-heading text-2xl font-700 text-white">
             Cities &amp; Towns We Serve
           </h2>
           <ul className="mx-auto grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
@@ -66,33 +66,33 @@ export default function ServiceAreasPage() {
               <li key={city.slug}>
                 <Link
                   href={`/service-areas/${city.slug}`}
-                  className="flex items-center gap-2 rounded-lg border border-gray-100 bg-white px-4 py-3 shadow-sm transition-colors hover:border-gold"
+                  className="flex items-center gap-2 rounded-lg border border-surface-border bg-surface px-4 py-3 shadow-sm transition-colors hover:border-gold"
                 >
                   <MapPin className="h-4 w-4 flex-shrink-0 text-gold" aria-hidden="true" />
-                  <span className="font-600 text-gray-700">{city.name}</span>
+                  <span className="font-600 text-white/80">{city.name}</span>
                 </Link>
               </li>
             ))}
           </ul>
-          <p className="mt-5 text-center text-gray-600">…{SERVICE_REGION}.</p>
+          <p className="mt-5 text-center text-white/70">…{SERVICE_REGION}.</p>
         </div>
 
         {/* ZIP codes */}
         <div className="mx-auto mt-12 max-w-4xl rounded-2xl bg-gray-light p-6 sm:p-8">
-          <h2 className="mb-4 font-heading text-xl font-700 text-ink">
+          <h2 className="mb-4 font-heading text-xl font-700 text-white">
             ZIP Codes We Cover
           </h2>
           <div className="flex flex-wrap gap-2">
             {ZIP_CODES.map((zip) => (
               <span
                 key={zip}
-                className="rounded-full bg-white px-3 py-1.5 text-sm font-600 text-gray-700 shadow-sm"
+                className="rounded-full bg-surface px-3 py-1.5 text-sm font-600 text-white/80 shadow-sm"
               >
                 {zip}
               </span>
             ))}
           </div>
-          <p className="mt-4 text-sm text-gray-500">
+          <p className="mt-4 text-sm text-white/60">
             Don&apos;t see your ZIP code? Call us — we serve many more communities
             across East Texas.
           </p>

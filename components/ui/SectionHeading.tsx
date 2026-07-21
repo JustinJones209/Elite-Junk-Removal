@@ -28,7 +28,7 @@ export function SectionHeading({
       )}
       <h2
         className={`font-heading font-800 text-3xl md:text-4xl lg:text-5xl leading-tight mb-4 ${
-          light ? "text-white" : "text-ink"
+          light ? "text-white" : "text-white"
         }`}
       >
         {heading}
@@ -37,7 +37,7 @@ export function SectionHeading({
         <p
           className={`text-lg leading-relaxed max-w-2xl ${
             centered ? "mx-auto" : ""
-          } ${light ? "text-white/80" : "text-gray-600"}`}
+          } ${light ? "text-white/80" : "text-white/70"}`}
         >
           {subtext}
         </p>
