@@ -33,7 +33,7 @@ const breadcrumbs = breadcrumbSchema([
 
 export default function FAQPage() {
   return (
-    <div className="bg-ink">
+    <div className="bg-white dark:bg-ink">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -49,10 +49,10 @@ export default function FAQPage() {
           <p className="mb-3 text-sm font-600 uppercase tracking-widest text-gold">
             Questions
           </p>
-          <h1 className="font-heading text-4xl font-800 text-white md:text-5xl">
+          <h1 className="font-heading text-4xl font-800 text-ink dark:text-white md:text-5xl">
             Frequently Asked Questions
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600 dark:text-white/70">
             Everything you need to know about junk removal with Call Me Gone. Don&apos;t
             see your question? Give us a call — we&apos;re happy to help.
           </p>
@@ -64,7 +64,7 @@ export default function FAQPage() {
         <FAQAccordion faqs={FAQS} />
 
         {/* CTA */}
-        <div className="mx-auto mt-12 max-w-3xl rounded-2xl bg-ink-dark p-8 text-center">
+        <div className="mx-auto mt-12 max-w-3xl rounded-2xl bg-ink p-8 text-center">
           <h2 className="font-heading text-2xl font-700 text-white">
             Still have questions?
           </h2>

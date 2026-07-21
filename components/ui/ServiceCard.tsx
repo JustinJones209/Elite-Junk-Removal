@@ -21,8 +21,8 @@ export function ServiceCard({ icon: Icon, title, description, href = "/quote" }:
       <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-gold/10 text-gold transition-colors group-hover:bg-brand-gradient group-hover:text-white">
         <Icon className="h-7 w-7" aria-hidden="true" />
       </div>
-      <h3 className="mb-2 font-heading text-xl font-700 text-white">{title}</h3>
-      <p className="mb-5 text-white/70">{description}</p>
+      <h3 className="mb-2 font-heading text-xl font-700 text-ink dark:text-white">{title}</h3>
+      <p className="mb-5 text-gray-600 dark:text-white/70">{description}</p>
       <Link
         href={href}
         className="inline-flex items-center gap-1.5 font-body font-600 text-gold transition-colors hover:text-gold-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"

@@ -22,16 +22,16 @@ export function ServiceAreaMap() {
 
   return (
     <div
-      className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-gold/10 via-surface to-ink shadow-inner"
+      className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-gray-200 dark:border-white/10 bg-gradient-to-br from-gold/10 via-surface to-ink/10 dark:to-ink shadow-inner"
       role="img"
       aria-label={`Map showing Call Me Gone Junk Removal's service area centered on ${BUSINESS.city}, ${BUSINESS.region} and surrounding East Texas`}
     >
       {/* Subtle grid to read as a map */}
       <div
-        className="absolute inset-0 opacity-[0.15]"
+        className="absolute inset-0 text-ink opacity-[0.15] dark:text-white"
         style={{
           backgroundImage:
-            "linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)",
+            "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
           backgroundSize: "48px 48px",
         }}
         aria-hidden="true"
@@ -56,7 +56,7 @@ export function ServiceAreaMap() {
             className={
               pin.primary
                 ? "h-9 w-9 fill-gold text-white drop-shadow"
-                : "h-6 w-6 fill-white/90 text-ink drop-shadow"
+                : "h-6 w-6 fill-ink text-white dark:fill-white/90 dark:text-ink drop-shadow"
             }
           />
         </div>

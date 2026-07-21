@@ -12,18 +12,18 @@ export function TestimonialCard({ quote, name, location, rating }: Testimonial) 
           <Star
             key={i}
             className={`h-5 w-5 ${
-              i < rating ? "fill-gold text-gold" : "text-white/20"
+              i < rating ? "fill-gold text-gold" : "text-gray-300 dark:text-white/20"
             }`}
             aria-hidden="true"
           />
         ))}
       </div>
-      <blockquote className="flex-1 text-white/80">
+      <blockquote className="flex-1 text-gray-700 dark:text-white/80">
         <p>&ldquo;{quote}&rdquo;</p>
       </blockquote>
       <figcaption className="mt-5 border-t border-surface-border pt-4">
-        <span className="block font-heading font-700 text-white">{name}</span>
-        <span className="block text-sm text-white/60">{location}</span>
+        <span className="block font-heading font-700 text-ink dark:text-white">{name}</span>
+        <span className="block text-sm text-gray-500 dark:text-white/60">{location}</span>
       </figcaption>
     </figure>
   );

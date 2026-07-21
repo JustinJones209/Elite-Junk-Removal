@@ -8,7 +8,7 @@ import { FAQS } from "@/lib/site";
 /** Condensed FAQ accordion with a link to the full /faq page. */
 export function FAQPreview() {
   return (
-    <section id="faq" className="bg-gray-light py-16 md:py-24">
+    <section id="faq" className="bg-white dark:bg-ink py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading

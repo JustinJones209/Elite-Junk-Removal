@@ -26,11 +26,11 @@ export function ProcessStep({ number, icon: Icon, title, description }: ProcessS
           {number}
         </span>
       </div>
-      <h3 className="mb-2 font-heading text-lg font-700 text-white">
+      <h3 className="mb-2 font-heading text-lg font-700 text-ink dark:text-white">
         <span className="sr-only">Step {number}: </span>
         {title}
       </h3>
-      <p className="max-w-xs text-white/70">{description}</p>
+      <p className="max-w-xs text-gray-600 dark:text-white/70">{description}</p>
     </div>
   );
 }

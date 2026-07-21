@@ -12,7 +12,7 @@ import { IMAGES } from "@/lib/images";
  */
 export function FounderStory() {
   return (
-    <section id="about" className="bg-ink py-16 md:py-24">
+    <section id="about" className="bg-gray-light py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* Photo */}
@@ -43,10 +43,10 @@ export function FounderStory() {
               <p className="mb-3 text-sm font-600 uppercase tracking-widest text-gold">
                 Meet the Team
               </p>
-              <h2 className="font-heading text-3xl font-800 text-white md:text-4xl">
+              <h2 className="font-heading text-3xl font-800 text-ink dark:text-white md:text-4xl">
                 Meet Gus Morales
               </h2>
-              <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/70">
+              <div className="mt-5 space-y-4 text-lg leading-relaxed text-gray-600 dark:text-white/70">
                 <p>
                   Gus runs sales and day-to-day operations for Call Me Gone
                   Junk Removal — he&apos;s usually the voice you&apos;ll hear
@@ -57,7 +57,7 @@ export function FounderStory() {
                   No shortcuts, no mess left behind — just an honest day&apos;s
                   work and a job done with a spirit of excellence.
                 </p>
-                <p className="font-heading text-xl font-600 italic text-white">
+                <p className="font-heading text-xl font-600 italic text-ink dark:text-white">
                   &ldquo;{BUSINESS.slogan}&rdquo;
                 </p>
               </div>

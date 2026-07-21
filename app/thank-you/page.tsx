@@ -20,10 +20,10 @@ export default function ThankYouPage() {
         <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gold/10">
           <CheckCircle2 className="h-11 w-11 text-gold" aria-hidden="true" />
         </div>
-        <h1 className="font-heading text-4xl font-800 text-white md:text-5xl">
+        <h1 className="font-heading text-4xl font-800 text-ink dark:text-white md:text-5xl">
           Thank You!
         </h1>
-        <p className="mt-4 text-lg text-white/70">
+        <p className="mt-4 text-lg text-gray-600 dark:text-white/70">
           We&apos;ve received your request and Gus&apos;s team will be in
           touch shortly with your free quote. Need us fast? Give us a call and
           we&apos;ll do our best to get you same-day service.
@@ -39,7 +39,7 @@ export default function ThankYouPage() {
           </CTAButton>
         </div>
 
-        <p className="mt-8 text-sm text-white/60">
+        <p className="mt-8 text-sm text-gray-500 dark:text-white/60">
           In the meantime, have a question?{" "}
           <Link href="/faq" className="font-600 text-gold hover:underline">
             Check our FAQ

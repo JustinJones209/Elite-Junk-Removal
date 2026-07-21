@@ -17,7 +17,7 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="mx-auto max-w-3xl divide-y divide-white/10 rounded-2xl border border-white/10 bg-surface">
+    <div className="mx-auto max-w-3xl divide-y divide-gray-200 dark:divide-white/10 rounded-2xl border border-gray-200 dark:border-white/10 bg-surface">
       {faqs.map((faq, i) => {
         const isOpen = openIndex === i;
         const panelId = `faq-panel-${i}`;
@@ -31,7 +31,7 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpenIndex(isOpen ? null : i)}
-                className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left font-heading font-600 text-white transition-colors hover:bg-white/5 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-gold"
+                className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left font-heading font-600 text-ink dark:text-white transition-colors hover:bg-gray-50 dark:hover:bg-white/5 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-gold"
               >
                 <span>{faq.question}</span>
                 <ChevronDown
@@ -54,7 +54,7 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
                   transition={{ duration: 0.25, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
-                  <p className="px-5 pb-5 text-white/70">{faq.answer}</p>
+                  <p className="px-5 pb-5 text-gray-600 dark:text-white/70">{faq.answer}</p>
                 </motion.div>
               )}
             </AnimatePresence>

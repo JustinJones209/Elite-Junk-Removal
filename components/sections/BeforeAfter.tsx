@@ -6,7 +6,7 @@ import { BEFORE_AFTER } from "@/lib/images";
 /** Interactive before/after showcase of real (placeholder) jobs. */
 export function BeforeAfter() {
   return (
-    <section className="bg-ink py-16 md:py-24">
+    <section className="bg-white dark:bg-ink py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading

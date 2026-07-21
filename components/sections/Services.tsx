@@ -6,7 +6,7 @@ import { SERVICES } from "@/lib/site";
 /** Grid of the six core services. */
 export function Services() {
   return (
-    <section id="services" className="bg-ink py-16 md:py-24">
+    <section id="services" className="bg-white dark:bg-ink py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading

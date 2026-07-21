@@ -22,7 +22,7 @@ interface QuoteFormProps {
 }
 
 const inputBase =
-  "w-full rounded-lg border border-white/15 bg-ink px-4 py-3 text-white placeholder-white/35 transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 aria-[invalid=true]:border-red-500";
+  "w-full rounded-lg border border-gray-300 dark:border-white/15 bg-white dark:bg-ink px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/35 transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 aria-[invalid=true]:border-red-500";
 
 export function QuoteForm({ variant = "full" }: QuoteFormProps) {
   const router = useRouter();
@@ -59,7 +59,7 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
   /** Small helper to render a field's error message with a11y wiring. */
   const errorFor = (name: keyof QuoteFormValues) =>
     errors[name] ? (
-      <p id={`${name}-error`} role="alert" className="mt-1.5 text-sm text-red-400">
+      <p id={`${name}-error`} role="alert" className="mt-1.5 text-sm text-red-600 dark:text-red-400">
         {errors[name]?.message as string}
       </p>
     ) : null;
@@ -76,7 +76,7 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
       <div className={`grid gap-5 ${isFull ? "sm:grid-cols-2" : ""}`}>
         {/* Name */}
         <div className={isFull ? "" : ""}>
-          <label htmlFor="name" className="mb-1.5 block font-600 text-white">
+          <label htmlFor="name" className="mb-1.5 block font-600 text-ink dark:text-white">
             Name <span className="text-red-500">*</span>
           </label>
           <input
@@ -94,7 +94,7 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
 
         {/* Phone */}
         <div>
-          <label htmlFor="phone" className="mb-1.5 block font-600 text-white">
+          <label htmlFor="phone" className="mb-1.5 block font-600 text-ink dark:text-white">
             Phone <span className="text-red-500">*</span>
           </label>
           <input
@@ -112,8 +112,8 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
 
         {/* Email */}
         <div>
-          <label htmlFor="email" className="mb-1.5 block font-600 text-white">
-            Email <span className="text-white/50">(optional)</span>
+          <label htmlFor="email" className="mb-1.5 block font-600 text-ink dark:text-white">
+            Email <span className="text-gray-400 dark:text-white/50">(optional)</span>
           </label>
           <input
             id="email"
@@ -130,7 +130,7 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
 
         {/* ZIP */}
         <div>
-          <label htmlFor="zip" className="mb-1.5 block font-600 text-white">
+          <label htmlFor="zip" className="mb-1.5 block font-600 text-ink dark:text-white">
             ZIP Code <span className="text-red-500">*</span>
           </label>
           <input
@@ -150,7 +150,7 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
 
         {/* Service type */}
         <div className={isFull ? "sm:col-span-2" : ""}>
-          <label htmlFor="serviceType" className="mb-1.5 block font-600 text-white">
+          <label htmlFor="serviceType" className="mb-1.5 block font-600 text-ink dark:text-white">
             Service Type <span className="text-red-500">*</span>
           </label>
           <select
@@ -176,8 +176,8 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
         {/* Preferred date (full only) */}
         {isFull && (
           <div className="sm:col-span-2">
-            <label htmlFor="preferredDate" className="mb-1.5 block font-600 text-white">
-              Preferred Date <span className="text-white/50">(optional)</span>
+            <label htmlFor="preferredDate" className="mb-1.5 block font-600 text-ink dark:text-white">
+              Preferred Date <span className="text-gray-400 dark:text-white/50">(optional)</span>
             </label>
             <input
               id="preferredDate"
@@ -190,7 +190,7 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
 
         {/* Description */}
         <div className={isFull ? "sm:col-span-2" : ""}>
-          <label htmlFor="description" className="mb-1.5 block font-600 text-white">
+          <label htmlFor="description" className="mb-1.5 block font-600 text-ink dark:text-white">
             What needs to go? <span className="text-red-500">*</span>
           </label>
           <textarea
@@ -208,8 +208,8 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
         {/* Photo upload (full only, optional) */}
         {isFull && (
           <div className="sm:col-span-2">
-            <label htmlFor="photo" className="mb-1.5 block font-600 text-white">
-              Add a Photo <span className="text-white/50">(optional)</span>
+            <label htmlFor="photo" className="mb-1.5 block font-600 text-ink dark:text-white">
+              Add a Photo <span className="text-gray-400 dark:text-white/50">(optional)</span>
             </label>
             {/*
               TODO(launch): This file input is intentionally NOT wired to the
@@ -222,9 +222,9 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
               name="photo"
               type="file"
               accept="image/*"
-              className="w-full rounded-lg border border-dashed border-white/20 bg-ink px-4 py-3 text-sm text-white/60 file:mr-4 file:rounded-md file:border-0 file:bg-gold file:px-4 file:py-2 file:font-600 file:text-white hover:file:bg-gold-dark"
+              className="w-full rounded-lg border border-dashed border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-ink px-4 py-3 text-sm text-gray-600 dark:text-white/60 file:mr-4 file:rounded-md file:border-0 file:bg-gold file:px-4 file:py-2 file:font-600 file:text-white hover:file:bg-gold-dark"
             />
-            <p className="mt-1.5 text-xs text-white/50">
+            <p className="mt-1.5 text-xs text-gray-400 dark:text-white/50">
               A photo helps us give you a faster, more accurate quote.
             </p>
           </div>
@@ -235,7 +235,7 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
       {formError && (
         <div
           role="alert"
-          className="mt-5 flex items-center gap-2 rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-400"
+          className="mt-5 flex items-center gap-2 rounded-lg bg-red-50 dark:bg-red-500/10 px-4 py-3 text-sm text-red-700 dark:text-red-400"
         >
           <AlertCircle className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
           {formError}
@@ -253,7 +253,7 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
             "Get My Free Quote"
           )}
         </CTAButton>
-        <p className="mt-3 text-center text-xs text-white/50">
+        <p className="mt-3 text-center text-xs text-gray-400 dark:text-white/50">
           No obligation. We&apos;ll only use your info to prepare your quote.
         </p>
       </div>

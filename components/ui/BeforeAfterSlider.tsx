@@ -73,7 +73,7 @@ export function BeforeAfterSlider({ pairs }: BeforeAfterSliderProps) {
     <div className="mx-auto w-full max-w-3xl">
       <div
         ref={containerRef}
-        className="relative aspect-[4/3] w-full touch-none select-none overflow-hidden rounded-2xl bg-surface shadow-xl ring-1 ring-white/10 sm:aspect-[16/10]"
+        className="relative aspect-[4/3] w-full touch-none select-none overflow-hidden rounded-2xl bg-surface shadow-xl ring-1 ring-black/5 dark:ring-white/10 sm:aspect-[16/10]"
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerLeave={onPointerUp}
@@ -137,7 +137,7 @@ export function BeforeAfterSlider({ pairs }: BeforeAfterSliderProps) {
             type="button"
             onClick={() => go(-1)}
             aria-label="Previous example"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 dark:border-white/20 text-ink dark:text-white transition-colors hover:bg-gray-100 dark:hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           >
             <ChevronLeft className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -155,7 +155,7 @@ export function BeforeAfterSlider({ pairs }: BeforeAfterSliderProps) {
                   setPosition(50);
                 }}
                 className={`h-2.5 rounded-full transition-all ${
-                  i === index ? "w-6 bg-gold" : "w-2.5 bg-white/20 hover:bg-white/30"
+                  i === index ? "w-6 bg-gold" : "w-2.5 bg-gray-300 dark:bg-white/20 hover:bg-gray-400 dark:hover:bg-white/30"
                 }`}
               />
             ))}
@@ -165,14 +165,14 @@ export function BeforeAfterSlider({ pairs }: BeforeAfterSliderProps) {
             type="button"
             onClick={() => go(1)}
             aria-label="Next example"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 dark:border-white/20 text-ink dark:text-white transition-colors hover:bg-gray-100 dark:hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           >
             <ChevronRight className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
       )}
 
-      <p className="mt-3 text-center text-sm font-600 text-white/60">{pair.label}</p>
+      <p className="mt-3 text-center text-sm font-600 text-gray-500 dark:text-white/60">{pair.label}</p>
     </div>
   );
 }

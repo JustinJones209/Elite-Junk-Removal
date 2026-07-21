@@ -9,7 +9,7 @@ import { SERVICE_REGION } from "@/lib/site";
 /** Service-area section: map placeholder + list of served cities. */
 export function ServiceArea() {
   return (
-    <section id="service-areas" className="bg-ink py-16 md:py-24">
+    <section id="service-areas" className="bg-gray-light py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading
@@ -26,7 +26,7 @@ export function ServiceArea() {
 
           <Reveal delay={0.1}>
             <div>
-              <h3 className="mb-5 font-heading text-xl font-700 text-white">
+              <h3 className="mb-5 font-heading text-xl font-700 text-ink dark:text-white">
                 Cities &amp; Towns We Serve
               </h3>
               <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -37,12 +37,12 @@ export function ServiceArea() {
                       className="flex items-center gap-2 rounded-lg border border-surface-border bg-surface px-3 py-2.5 shadow-sm transition-colors hover:bg-gold/10"
                     >
                       <MapPin className="h-4 w-4 flex-shrink-0 text-gold" aria-hidden="true" />
-                      <span className="font-600 text-white/80">{city.name}</span>
+                      <span className="font-600 text-gray-700 dark:text-white/80">{city.name}</span>
                     </Link>
                   </li>
                 ))}
               </ul>
-              <p className="mt-5 text-white/70">…{SERVICE_REGION}.</p>
+              <p className="mt-5 text-gray-600 dark:text-white/70">…{SERVICE_REGION}.</p>
             </div>
           </Reveal>
         </div>
