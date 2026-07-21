@@ -24,21 +24,21 @@ export function Hero() {
           possible. TODO(launch): replace with a higher-resolution export of
           this photo — the current source is only 1282px wide, which is the
           ceiling for how crisp this can render full-bleed on large screens. */}
-      <div className="relative flex min-h-[520px] items-center overflow-hidden sm:min-h-[560px] lg:min-h-[640px]">
+      <div className="relative flex min-h-[560px] items-center overflow-hidden sm:min-h-[600px] lg:min-h-[680px]">
         <Image
           src="/photos/trailer.png"
           alt=""
           aria-hidden="true"
           fill
           priority
-          quality={90}
+          quality={100}
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/65" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/75 via-ink/15 to-transparent" />
 
-        <div className="relative mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-5xl text-center">
+        <div className="relative mx-auto w-full max-w-7xl px-4 pt-14 pb-10 sm:px-6 sm:pt-16 sm:pb-12 lg:px-8 lg:pt-20 lg:pb-14">
+          <div className="mx-auto max-w-6xl text-center">
             <style>{`
               @keyframes heroBrushStrokeReveal {
                 from {
@@ -59,20 +59,23 @@ export function Hero() {
               className="uppercase leading-[0.95] tracking-wide text-white"
               style={{
                 fontFamily: "var(--font-bangers)",
-                fontSize: "clamp(2.75rem, 3.2vw + 2rem, 6.5rem)",
-                WebkitTextStroke: "1.25px white",
+                fontSize: "clamp(3rem, 5vw + 2rem, 9.5rem)",
+                WebkitTextStroke: "1.5px white",
                 animation: "heroBrushStrokeReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both",
               }}
             >
               You Call, We Haul, It&apos;s{" "}
               <span
                 className="text-brand-gradient"
-                style={{ WebkitTextStroke: "1.25px #c8890a" }}
+                style={{ WebkitTextStroke: "1.5px #c8890a" }}
               >
                 Gone!
               </span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-white/80 sm:text-xl">
+            <p
+              className="mx-auto mt-8 max-w-2xl text-lg font-600 text-white sm:text-xl"
+              style={{ textShadow: "0 2px 10px rgba(0,0,0,0.75), 0 1px 3px rgba(0,0,0,0.9)" }}
+            >
               Reclaim your space from clutter. Fast, honest, full-service junk
               removal in Tyler &amp; all of East Texas. Same-day service, free
               estimates, and a crew that treats your home like their own.
@@ -88,14 +91,17 @@ export function Hero() {
               </CTAButton>
             </div>
 
-            <p className="mt-4 text-sm font-600 text-white/60">
+            <p
+              className="mt-4 text-sm font-700 text-white/90"
+              style={{ textShadow: "0 1px 6px rgba(0,0,0,0.7)" }}
+            >
               Same-day service available · No obligation
             </p>
           </div>
         </div>
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 pt-6 pb-14 sm:px-6 sm:pt-8 sm:pb-16 lg:px-8 lg:pt-8 lg:pb-20">
         {/* Garage cleanout slider */}
         <div className="relative mx-auto max-w-4xl">
           <BeforeAfterSlider pairs={[BEFORE_AFTER[0]]} light />
