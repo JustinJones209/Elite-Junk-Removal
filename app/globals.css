@@ -7,10 +7,10 @@
   --color-ink: #161616;
   --color-ink-dark: #000000;
   --color-ink-light: #2a2a2a;
-  --color-gold: #f2b705;
-  --color-gold-dark: #c98f06;
-  --color-amber: #ffd449; /* light gold — gradient start + highlights */
-  --color-amber-dark: #f0a202;
+  --color-gold: #c8890a; /* sampled from the real brand mockups (business card, trailer wrap) */
+  --color-gold-dark: #96690a;
+  --color-amber: #e0a819; /* light gold — gradient start + highlights */
+  --color-amber-dark: #b17d08;
   --color-gray-light: #f8f9fa;
 
   /* Fonts */
