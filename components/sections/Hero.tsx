@@ -3,7 +3,7 @@ import { Phone } from "lucide-react";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { TrustBadgeRow } from "@/components/ui/TrustBadgeRow";
 import { BeforeAfterSlider } from "@/components/ui/BeforeAfterSlider";
-import { PHONE_DISPLAY, PHONE_TEL, BUSINESS } from "@/lib/site";
+import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 import { BEFORE_AFTER } from "@/lib/images";
 
 /**
@@ -36,12 +36,20 @@ export function Hero() {
       <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8 lg:py-24">
         {/* Copy */}
         <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-4 inline-flex items-center rounded-full bg-gold/10 px-4 py-1.5 text-sm font-600 text-gold">
-            Locally Owned in {BUSINESS.city}, {BUSINESS.regionName}
-          </p>
-          <h1 className="font-heading text-4xl font-800 uppercase leading-[1.1] tracking-tight text-ink dark:text-white sm:text-5xl lg:text-6xl">
-            You Call, We Haul, It&apos;s{" "}
-            <span className="text-brand-gradient">Gone</span>
+          <style>{`
+            @keyframes heroAntonFadeUp {
+              from { opacity: 0; transform: translateY(14px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+          `}</style>
+          <h1
+            className="text-4xl uppercase leading-[1.05] tracking-wide text-ink dark:text-white sm:text-5xl lg:text-6xl"
+            style={{
+              fontFamily: "var(--font-anton)",
+              animation: "heroAntonFadeUp 0.7s ease-out both",
+            }}
+          >
+            You Call, We Haul, It&apos;s <span className="text-brand-gradient">Gone!</span>
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg text-gray-600 dark:text-white/75">
             Reclaim your space from clutter. Fast, honest, full-service junk
