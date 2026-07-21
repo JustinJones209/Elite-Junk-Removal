@@ -54,8 +54,8 @@ export function Hero() {
               <Phone className="h-5 w-5" aria-hidden="true" />
               Call Now — {PHONE_DISPLAY}
             </CTAButton>
-            <CTAButton href="/quote" variant="secondary" size="lg">
-              Get a Free Quote
+            <CTAButton href="/pricing" variant="secondary" size="lg">
+              See Pricing
             </CTAButton>
           </div>
 

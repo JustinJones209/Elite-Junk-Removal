@@ -4,7 +4,15 @@ import { CTAButton } from "@/components/ui/CTAButton";
 import { Reveal } from "@/components/ui/Reveal";
 import { breadcrumbSchema } from "@/lib/schema";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
-import { PRICING_TIERS, PRICE_FACTORS, DISCOUNTS } from "@/lib/pricing";
+import {
+  PRICING_TIERS,
+  DISCOUNTS,
+  SINGLE_ITEM_PRICES,
+  TRAILER_LOAD_PRICES,
+  EXTRA_CHARGES,
+  CLEANOUT_TYPES,
+  ITEMS_WE_TAKE,
+} from "@/lib/pricing";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -67,20 +75,148 @@ export default function PricingPage() {
           always confirm the exact number with you before we start.
         </p>
 
-        {/* What affects price */}
+        {/* Full itemized pricing */}
         <Reveal>
-          <div className="mx-auto mt-16 max-w-3xl">
+          <div className="mx-auto mt-16 max-w-5xl">
             <h2 className="text-center font-heading text-2xl font-700 text-ink dark:text-white md:text-3xl">
-              What Can Affect Your Price
+              The Full Price List
             </h2>
-            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-              {PRICE_FACTORS.map((factor) => (
-                <li key={factor} className="flex items-start gap-2 text-gray-700 dark:text-white/80">
-                  <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-gold" aria-hidden="true" />
-                  <span>{factor}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="mx-auto mt-3 max-w-2xl text-center text-gray-600 dark:text-white/70">
+              Straight from our rate sheet — exact ranges for common items and
+              trailer loads.
+            </p>
+
+            <div className="mt-8 grid gap-8 lg:grid-cols-2">
+              {/* Single item pricing */}
+              <div className="overflow-hidden rounded-2xl border border-surface-border bg-surface shadow-sm">
+                <div className="bg-ink px-6 py-4">
+                  <h3 className="font-heading text-lg font-700 uppercase tracking-wide text-gold">
+                    Single Item Pricing
+                  </h3>
+                </div>
+                <ul className="divide-y divide-surface-border px-6">
+                  {SINGLE_ITEM_PRICES.map((row) => (
+                    <li
+                      key={row.item}
+                      className="flex items-center justify-between gap-4 py-3"
+                    >
+                      <span className="text-gray-700 dark:text-white/80">
+                        {row.item}
+                        {"note" in row && row.note && (
+                          <span className="block text-xs text-gray-500 dark:text-white/50">
+                            {row.note}
+                          </span>
+                        )}
+                      </span>
+                      <span className="whitespace-nowrap font-700 text-ink dark:text-white">
+                        {row.price}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="h-6" />
+              </div>
+
+              {/* Trailer load pricing + extra charges */}
+              <div className="flex flex-col gap-8">
+                <div className="overflow-hidden rounded-2xl border border-surface-border bg-surface shadow-sm">
+                  <div className="bg-ink px-6 py-4">
+                    <h3 className="font-heading text-lg font-700 uppercase tracking-wide text-gold">
+                      Trailer Load Pricing
+                    </h3>
+                    <p className="text-sm text-white/60">14-foot dump trailer</p>
+                  </div>
+                  <ul className="divide-y divide-surface-border px-6">
+                    {TRAILER_LOAD_PRICES.map((row) => (
+                      <li
+                        key={row.size}
+                        className="flex items-center justify-between gap-4 py-3"
+                      >
+                        <span className="font-600 text-gray-700 dark:text-white/80">
+                          {row.size}
+                        </span>
+                        <span className="whitespace-nowrap font-700 text-ink dark:text-white">
+                          {row.price}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="px-6 pb-5 pt-1 text-xs text-gray-500 dark:text-white/50">
+                    Prices may vary based on weight, volume, and type of
+                    material.
+                  </p>
+                </div>
+
+                <div className="overflow-hidden rounded-2xl border border-surface-border bg-surface shadow-sm">
+                  <div className="bg-ink px-6 py-4">
+                    <h3 className="font-heading text-lg font-700 uppercase tracking-wide text-gold">
+                      Extra Charges
+                    </h3>
+                  </div>
+                  <ul className="divide-y divide-surface-border px-6">
+                    {EXTRA_CHARGES.map((row) => (
+                      <li
+                        key={row.label}
+                        className="flex items-center justify-between gap-4 py-3"
+                      >
+                        <span className="text-gray-700 dark:text-white/80">
+                          {row.label}
+                          {"note" in row && row.note && (
+                            <span className="block text-xs text-gray-500 dark:text-white/50">
+                              {row.note}
+                            </span>
+                          )}
+                        </span>
+                        <span className="whitespace-nowrap text-right font-700 text-ink dark:text-white">
+                          {row.amount}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="h-2" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Full-service cleanouts + what we take */}
+        <Reveal>
+          <div className="mx-auto mt-16 grid max-w-5xl gap-8 md:grid-cols-2">
+            <div className="rounded-2xl bg-gray-light p-8">
+              <h2 className="font-heading text-xl font-700 text-ink dark:text-white">
+                Full-Service Cleanouts
+              </h2>
+              <ul className="mt-5 space-y-2.5">
+                {CLEANOUT_TYPES.map((type) => (
+                  <li key={type} className="flex items-start gap-2 text-gray-700 dark:text-white/80">
+                    <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-gold" aria-hidden="true" />
+                    <span>{type}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-sm text-gray-500 dark:text-white/60">
+                No job too big or too small — we haul it all.
+              </p>
+            </div>
+
+            <div className="rounded-2xl bg-gray-light p-8">
+              <h2 className="font-heading text-xl font-700 text-ink dark:text-white">
+                We Take Almost Everything
+              </h2>
+              <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3">
+                {ITEMS_WE_TAKE.map(({ icon: Icon, label }) => (
+                  <div key={label} className="flex flex-col items-center gap-2 text-center">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold/15 text-gold">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <span className="text-sm font-600 text-gray-700 dark:text-white/80">
+                      {label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </Reveal>
 
