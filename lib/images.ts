@@ -1,10 +1,7 @@
 /**
- * Site imagery. Real Call Me Gone Junk Removal photos live in /public/photos; the
- * remaining Unsplash entries are temporary placeholders awaiting real photos.
+ * Site imagery. All photos below are real Call Me Gone Junk Removal jobs,
+ * served from /public/photos.
  */
-
-const unsplash = (id: string, w = 1200) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
 
 export const IMAGES = {
   // Real photo — Gus, sales/manager at Call Me Gone Junk Removal.
@@ -15,9 +12,7 @@ export const IMAGES = {
 } as const;
 
 /**
- * Before/after job examples for the comparison slider. The first pair (real
- * garage cleanout photos) also doubles as the hero image up top.
- * [PLACEHOLDER: replace the remaining pairs with real before/after job photos.]
+ * Before/after job examples for the comparison slider — all real jobs.
  */
 export const BEFORE_AFTER = [
   {
@@ -29,11 +24,12 @@ export const BEFORE_AFTER = [
     afterAlt: "The same garage cleared out and clean after Call Me Gone Junk Removal",
   },
   {
-    label: "Living Room Cleanout",
-    beforeSrc: unsplash("1416879595882-3373a0480b5b", 1000),
-    afterSrc: unsplash("1493809842364-78817add7ffb", 1000),
-    beforeAlt: "Room filled with unwanted furniture and clutter before removal",
-    afterAlt: "Bright, tidy living room after junk removal",
+    // Real job — storage unit cleanout.
+    label: "Storage Unit Cleanout",
+    beforeSrc: "/photos/storage-before.png",
+    afterSrc: "/photos/storage-after.png",
+    beforeAlt: "Storage unit packed with furniture and boxes before Call Me Gone Junk Removal cleared it out",
+    afterAlt: "The same storage unit completely empty and clean after Call Me Gone Junk Removal",
   },
   {
     // Real job — yard cleanout.
