@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MapPin, Phone } from "lucide-react";
-import { ServiceAreaMap } from "@/components/ui/ServiceAreaMap";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { CITY_PAGES } from "@/lib/cities";
 import { breadcrumbSchema } from "@/lib/schema";
@@ -51,13 +50,8 @@ export default function ServiceAreasPage() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        {/* Map */}
-        <div className="mx-auto max-w-4xl">
-          <ServiceAreaMap />
-        </div>
-
         {/* Cities */}
-        <div className="mt-14">
+        <div>
           <h2 className="mb-6 text-center font-heading text-2xl font-700 text-ink dark:text-white">
             Cities &amp; Towns We Serve
           </h2>

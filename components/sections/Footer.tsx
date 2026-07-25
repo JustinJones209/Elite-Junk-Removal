@@ -25,7 +25,6 @@ function InstagramIcon({ className }: { className?: string }) {
 
 const navLinks = [
   { href: "/#services", label: "Services" },
-  { href: "/#how-it-works", label: "How It Works" },
   { href: "/pricing", label: "Pricing" },
   { href: "/#reviews", label: "Reviews" },
   { href: "/faq", label: "FAQ" },

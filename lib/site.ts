@@ -196,7 +196,8 @@ export interface Testimonial {
   rating: number;
 }
 
-// TODO(launch): Replace with real, verified customer reviews (with permission).
+// Fallback shown until real Google reviews are wired in — see lib/google-reviews.ts.
+// TODO(launch): Remove once GOOGLE_PLACES_API_KEY / GOOGLE_PLACE_ID are set.
 export const TESTIMONIALS: Testimonial[] = [
   {
     quote:

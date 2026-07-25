@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Oswald, Inter, Bangers } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
@@ -127,6 +128,10 @@ const localBusinessSchema = {
   sameAs: Object.values(SOCIALS).filter(Boolean),
 };
 
+// TODO(launch): Set NEXT_PUBLIC_GA_MEASUREMENT_ID once a GA4 property exists
+// (see .env.local.example) — Analytics stays off until it's set.
+const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -138,6 +143,22 @@ export default function RootLayout({
       className={`${oswald.variable} ${inter.variable} ${bangers.variable} h-full`}
     >
       <body className="flex min-h-full flex-col antialiased">
+        {gaMeasurementId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaMeasurementId}');
+              `}
+            </Script>
+          </>
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}

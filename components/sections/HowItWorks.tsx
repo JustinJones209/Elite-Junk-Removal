@@ -13,7 +13,7 @@ export function HowItWorks() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading
-            kicker="How It Works"
+            kicker="Getting Started"
             heading="Junk Gone in 4 Simple Steps"
             subtext="No hassle, no surprises. Here's exactly what to expect when you book with us."
           />

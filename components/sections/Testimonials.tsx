@@ -2,16 +2,18 @@ import { Star } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TestimonialCarousel } from "@/components/ui/TestimonialCarousel";
 import { Reveal } from "@/components/ui/Reveal";
-import { TESTIMONIALS } from "@/lib/site";
+import { getGoogleReviews } from "@/lib/google-reviews";
 
-/** Customer reviews — grid on desktop, carousel on mobile. */
-export function Testimonials() {
+/** Live 5-star Google reviews — grid on desktop, carousel on mobile. */
+export async function Testimonials() {
+  const reviews = await getGoogleReviews();
+
   return (
     <section id="reviews" className="bg-white dark:bg-ink py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading
-            kicker="Reviews"
+            kicker="Google Reviews"
             heading="What Your Neighbors Are Saying"
           />
           <div className="mt-4 flex items-center justify-center gap-2">
@@ -28,7 +30,7 @@ export function Testimonials() {
 
         <Reveal delay={0.1}>
           <div className="mt-12">
-            <TestimonialCarousel testimonials={TESTIMONIALS} />
+            <TestimonialCarousel testimonials={reviews} />
           </div>
         </Reveal>
       </div>

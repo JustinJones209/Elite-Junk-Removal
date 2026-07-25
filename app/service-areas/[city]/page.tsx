@@ -8,9 +8,9 @@ import { TestimonialCard } from "@/components/ui/TestimonialCard";
 import { TrustBadgeRow } from "@/components/ui/TrustBadgeRow";
 import { CITY_PAGES, getCityPage } from "@/lib/cities";
 import { breadcrumbSchema } from "@/lib/schema";
+import { getGoogleReviews } from "@/lib/google-reviews";
 import {
   SERVICES,
-  TESTIMONIALS,
   PHONE_DISPLAY,
   PHONE_TEL,
   SITE_URL,
@@ -52,6 +52,8 @@ export default async function CityPage({
   const { city: slug } = await params;
   const city = getCityPage(slug);
   if (!city) notFound();
+
+  const reviews = await getGoogleReviews();
 
   const localBusinessSchema = {
     "@context": "https://schema.org",
@@ -143,7 +145,7 @@ export default async function CityPage({
             Trusted Across East Texas
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
-            {TESTIMONIALS.slice(0, 3).map((t) => (
+            {reviews.slice(0, 3).map((t) => (
               <TestimonialCard key={t.name} {...t} />
             ))}
           </div>
