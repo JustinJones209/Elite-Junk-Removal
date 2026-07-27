@@ -138,19 +138,21 @@ export default async function CityPage({
         </div>
       </div>
 
-      {/* Testimonials */}
-      <div className="bg-gray-light py-14 md:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-10 text-center font-heading text-2xl font-700 text-ink dark:text-white md:text-3xl">
-            Trusted Across East Texas
-          </h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {reviews.slice(0, 3).map((t) => (
-              <TestimonialCard key={t.name} {...t} />
-            ))}
+      {/* Testimonials — only shown once real Google reviews exist */}
+      {reviews.length > 0 && (
+        <div className="bg-gray-light py-14 md:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h2 className="mb-10 text-center font-heading text-2xl font-700 text-ink dark:text-white md:text-3xl">
+              Trusted Across East Texas
+            </h2>
+            <div className="grid gap-6 md:grid-cols-3">
+              {reviews.slice(0, 3).map((t) => (
+                <TestimonialCard key={t.name} {...t} />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Nearby areas — internal linking */}
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8">

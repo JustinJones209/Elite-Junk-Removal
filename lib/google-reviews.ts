@@ -7,8 +7,9 @@ import { TESTIMONIALS } from "@/lib/site";
  * TODO(launch): Once the Call Me Gone Google Business Profile is live, set
  * GOOGLE_PLACES_API_KEY and GOOGLE_PLACE_ID in the environment. As soon as
  * both are present this automatically starts pulling real 5-star reviews
- * from the Places API instead of the placeholder testimonials below — no
- * further code changes needed.
+ * from the Places API — no further code changes needed. Until then this
+ * returns an empty list (TESTIMONIALS is empty), and the Reviews section
+ * shows a "leave us a review" CTA instead.
  */
 export async function getGoogleReviews(): Promise<Testimonial[]> {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;

@@ -62,6 +62,11 @@ export const SOCIALS = {
   google: "",
 } as const;
 
+// TODO(launch): Replace with the real "write a review" link once the Google
+// Business Profile exists (Business Profile → "Ask for reviews" → copy the
+// short link, or use https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID).
+export const GOOGLE_REVIEW_URL = "https://g.page/r/REPLACE-ME/review";
+
 /* -------------------------------------------------------------------------- */
 /*  Service area                                                              */
 /* -------------------------------------------------------------------------- */
@@ -196,38 +201,10 @@ export interface Testimonial {
   rating: number;
 }
 
-// Fallback shown until real Google reviews are wired in — see lib/google-reviews.ts.
-// TODO(launch): Remove once GOOGLE_PLACES_API_KEY / GOOGLE_PLACE_ID are set.
-export const TESTIMONIALS: Testimonial[] = [
-  {
-    quote:
-      "Gus and his crew cleared out my parents' garage in a single afternoon. Professional, respectful, and fairly priced. Couldn't ask for more.",
-    name: "Sarah",
-    location: "Tyler, TX",
-    rating: 5,
-  },
-  {
-    quote:
-      "Called in the morning and they came the same day. They hauled off an old fridge and a couch and left everything spotless. Highly recommend.",
-    name: "Marcus",
-    location: "Whitehouse, TX",
-    rating: 5,
-  },
-  {
-    quote:
-      "After my remodel I had debris everywhere. Call Me Gone handled it all quickly and the quote was exactly what I paid. Honest local business.",
-    name: "Deborah",
-    location: "Lindale, TX",
-    rating: 5,
-  },
-  {
-    quote:
-      "They handled a full estate cleanout with so much care during a hard time for our family. Kind, efficient, and trustworthy people.",
-    name: "James",
-    location: "Longview, TX",
-    rating: 5,
-  },
-];
+// Populated once real Google reviews come in — see lib/google-reviews.ts.
+// No placeholder reviews: there are no real reviews yet, so this stays empty
+// until GOOGLE_PLACES_API_KEY / GOOGLE_PLACE_ID are set (TODO(launch)).
+export const TESTIMONIALS: Testimonial[] = [];
 
 /* -------------------------------------------------------------------------- */
 /*  FAQ                                                                       */
