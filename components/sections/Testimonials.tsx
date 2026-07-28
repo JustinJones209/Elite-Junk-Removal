@@ -4,12 +4,15 @@ import { TestimonialCarousel } from "@/components/ui/TestimonialCarousel";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { Reveal } from "@/components/ui/Reveal";
 import { getGoogleReviews } from "@/lib/google-reviews";
-import { GOOGLE_REVIEW_URL } from "@/lib/site";
 
 /**
  * Live 5-star Google reviews — grid on desktop, carousel on mobile.
- * Until the first real review comes in, shows a "leave us a review" CTA
- * instead of any placeholder/fake testimonials.
+ * Until the first real review comes in, shows a generic "leave us a
+ * review" CTA instead of any placeholder/fake testimonials.
+ *
+ * TODO(launch): The button below is a no-op (no href/onClick) until the
+ * Google Business Profile review link exists — wire it up to
+ * GOOGLE_REVIEW_URL in lib/site.ts once that's available.
  */
 export async function Testimonials() {
   const reviews = await getGoogleReviews();
@@ -21,9 +24,7 @@ export async function Testimonials() {
         <Reveal>
           <SectionHeading
             kicker="Google Reviews"
-            heading={
-              hasReviews ? "What Your Neighbors Are Saying" : "Be Our First Google Review"
-            }
+            heading={hasReviews ? "What Your Neighbors Are Saying" : "Leave Us a Review"}
           />
           <div className="mt-4 flex items-center justify-center gap-2">
             <div className="flex gap-0.5" aria-hidden="true">
@@ -45,16 +46,10 @@ export async function Testimonials() {
           </Reveal>
         ) : (
           <Reveal delay={0.1}>
-            <div className="mx-auto mt-10 max-w-xl text-center">
-              <p className="text-gray-600 dark:text-white/70">
-                We&apos;re just getting started on Google — if we&apos;ve helped clear out your
-                space, a quick review helps other East Texas neighbors find us.
-              </p>
-              <div className="mt-6 flex justify-center">
-                <CTAButton href={GOOGLE_REVIEW_URL} variant="secondary" size="lg">
-                  Leave Us a Google Review
-                </CTAButton>
-              </div>
+            <div className="mt-10 flex justify-center">
+              <CTAButton variant="secondary" size="lg">
+                Leave Us a Google Review
+              </CTAButton>
             </div>
           </Reveal>
         )}
