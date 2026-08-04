@@ -48,11 +48,20 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
 
   const onSubmit = async (values: QuoteFormValues) => {
     setFormError(null);
-    const result = await submitQuote(values);
-    if (result.success) {
-      router.push("/thank-you");
-    } else {
-      setFormError(result.message);
+    try {
+      const result = await submitQuote(values);
+      if (result.success) {
+        router.push("/thank-you");
+      } else {
+        setFormError(result.message);
+      }
+    } catch {
+      // Covers transport-level failures (e.g. a stale build's Server Action
+      // no longer matching the deployed server) that never reach the
+      // success/failure branch above.
+      setFormError(
+        "Something went wrong sending your request. Please call us instead or try again after refreshing the page."
+      );
     }
   };
 
