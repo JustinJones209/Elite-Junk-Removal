@@ -89,7 +89,7 @@ export function BeforeAfterSlider({ pairs, light = false }: BeforeAfterSliderPro
           className="object-cover"
           draggable={false}
         />
-        <span className="absolute right-3 top-3 z-10 rounded-full bg-gold px-3 py-1 text-xs font-600 text-white shadow">
+        <span className="absolute right-3 top-3 rounded-full bg-gold px-3 py-1 text-xs font-600 text-white shadow">
           After
         </span>
 
