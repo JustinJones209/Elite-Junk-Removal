@@ -1,6 +1,7 @@
 "use server";
 
 import { quoteSchema, type QuoteActionResult } from "@/lib/quote-schema";
+import { EMAIL } from "@/lib/site";
 
 /**
  * Server Action that receives a quote request and emails it to the business.
@@ -9,11 +10,13 @@ import { quoteSchema, type QuoteActionResult } from "@/lib/quote-schema";
  * re-validate the payload on the server rather than trusting client validation.
  *
  * Email delivery uses Resend (https://resend.com) via its REST API — no extra
- * npm dependency required. It is configured entirely through env vars so no
- * secrets live in the code:
+ * npm dependency required. Configured mostly through env vars, but the "to"
+ * address defaults to the business's own public EMAIL (lib/site.ts) rather
+ * than requiring a QUOTE_TO_EMAIL env var — some hosting plans cap the
+ * number of custom environment variables, and this address isn't a secret:
  *
  *   RESEND_API_KEY   – your Resend API key (starts with "re_")
- *   QUOTE_TO_EMAIL   – where quote requests are sent (Gus's inbox)
+ *   QUOTE_TO_EMAIL   – optional override for the recipient (defaults to EMAIL)
  *   QUOTE_FROM_EMAIL – optional "From" (default: onboarding@resend.dev for testing)
  *
  * If RESEND_API_KEY is not set (e.g. local dev), it falls back to logging the
@@ -57,12 +60,12 @@ export async function submitQuote(values: unknown): Promise<QuoteActionResult> {
   ];
 
   const apiKey = process.env.RESEND_API_KEY;
-  const toEmail = process.env.QUOTE_TO_EMAIL;
+  const toEmail = process.env.QUOTE_TO_EMAIL || EMAIL;
   const fromEmail =
     process.env.QUOTE_FROM_EMAIL || "Call Me Gone Junk Removal <onboarding@resend.dev>";
 
   // Dev / not-yet-configured fallback: log instead of send.
-  if (!apiKey || !toEmail) {
+  if (!apiKey) {
     console.log("[QUOTE LEAD — email not configured, logging instead]", {
       ...lead,
       receivedAt,
