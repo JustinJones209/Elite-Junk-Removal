@@ -272,8 +272,10 @@ a { color: inherit; }
 /* ---------- Why us ---------- */
 .why { display: grid; gap: 36px; align-items: center; }
 @media (min-width: 1024px) { .why { grid-template-columns: 1fr 1.2fr; gap: 64px; } }
-.why-photo { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 3.4; }
-.why-photo img { width: 100%; height: 100%; object-fit: cover; }
+/* Logo in the "Why choose us" slot (Justin, 2026-11-09). drop-shadow follows the PNG's transparent shape. */
+.why-logo { display: flex; justify-content: center; align-items: center; }
+.why-logo img { display: block; width: min(72vw, 300px); height: auto; filter: drop-shadow(0 10px 14px rgba(22,22,22,.28)) drop-shadow(0 2px 3px rgba(22,22,22,.18)); }
+@media (min-width: 1024px) { .why-logo { padding: 24px 0; } .why-logo img { width: min(100%, 460px); } }
 .why-list { display: grid; gap: 28px 32px; }
 @media (min-width: 640px) { .why-list { grid-template-columns: 1fr 1fr; } }
 .why-item svg { width: 30px; height: 30px; color: var(--color-gold-dark); }

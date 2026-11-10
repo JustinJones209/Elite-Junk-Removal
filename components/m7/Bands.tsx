@@ -49,8 +49,14 @@ export function WhyUs() {
   return (
     <section className="band band-muted" aria-labelledby="why-h">
       <div className="wrap why">
-        <div className="why-photo reveal">
-          <Image src="/photos/garage-after.png" alt="A garage swept clean after a Call Me Gone cleanout" fill sizes="(min-width:1024px) 45vw, 100vw" />
+        <div className="why-logo reveal">
+          <Image
+            src="/photos/logo.png"
+            alt="Call Me Gone Junk Removal logo"
+            width={900}
+            height={606}
+            sizes="(min-width:1024px) 460px, 280px"
+          />
         </div>
         <div>
           <div className="sec-head reveal" style={{ marginBottom: 32 }}>
