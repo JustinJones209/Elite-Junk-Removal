@@ -2,54 +2,70 @@ import Image from "next/image";
 import { MoveHorizontal } from "lucide-react";
 import { BEFORE_AFTER } from "@/lib/images";
 
+/** Order Justin asked for: storage unit, yard debris, garage. */
+const ORDER = ["Storage Unit Cleanout", "Yard Debris Haul", "Garage Cleanout"] as const;
+const SHORT: Record<string, string> = {
+  "Storage Unit Cleanout": "Storage Unit",
+  "Yard Debris Haul": "Yard Debris",
+  "Garage Cleanout": "Garage",
+};
+const JOBS = ORDER.map((l) => BEFORE_AFTER.find((p) => p.label === l)!).filter(Boolean);
+
 /**
- * Before/after slider (kept as the centerpiece). Native range input drives a
- * clip-path, so it is keyboard and screen-reader accessible with no library.
+ * Full-bleed before/after slider. The job switcher is a segmented strip that
+ * sits ON the slider (no side column). Each job is its own pair of layers, so
+ * Next serves responsive images; hidden pairs lazy-load when picked. A native
+ * range input drives the clip, so it works by touch, mouse and keyboard.
  */
 export function BeforeAfter({ id = "before-after" }: { id?: string }) {
-  const first = BEFORE_AFTER[0];
   return (
-    <section id={id} className="band band-muted" aria-labelledby="ba-h">
+    <section id={id} className="band band-muted ba-band" aria-labelledby="ba-h">
       <div className="wrap">
         <div className="sec-head reveal">
           <p className="eyebrow">Real East Texas Jobs</p>
           <h2 id="ba-h" className="display h-sec">See It Gone. Drag the Slider.</h2>
-          <p className="lede">Real Call Me Gone jobs, photographed before and after. Slide to compare.</p>
+          <p className="lede">Real Call Me Gone jobs, photographed before and after. Pick a job, then slide to compare.</p>
         </div>
-        <div className="ba reveal" data-ba>
-          <div>
-            <div className="ba-stage" style={{ ["--pos" as string]: "50%" }}>
-              <Image data-ba-after src={first.afterSrc} alt={first.afterAlt} fill sizes="(min-width:1024px) 60vw, 100vw" />
-              <Image data-ba-before className="ba-before" src={first.beforeSrc} alt={first.beforeAlt} fill sizes="(min-width:1024px) 60vw, 100vw" />
-              <span className="ba-tag l">Before</span>
-              <span className="ba-tag r">After</span>
-              <span className="ba-handle" aria-hidden="true"><span className="ba-knob"><MoveHorizontal aria-hidden="true" /></span></span>
-              <input className="ba-range" type="range" min={0} max={100} defaultValue={50} aria-label="Before and after comparison: slide to reveal the before photo" />
+      </div>
+      <div className="ba-full reveal" data-ba>
+        <div className="ba-stage" style={{ ["--pos" as string]: "50%" }}>
+          {JOBS.map((p, i) => (
+            <div key={p.label} className="ba-pair-layer" data-ba-layer={i} hidden={i !== 0}>
+              <Image src={p.afterSrc} alt={p.afterAlt} fill sizes="100vw" />
+              <Image className="ba-before" src={p.beforeSrc} alt={p.beforeAlt} fill sizes="100vw" />
             </div>
-            <p className="ba-hint muted-text"><MoveHorizontal size={18} aria-hidden="true" /> <span data-ba-caption>{first.label}</span> · drag, swipe, or use arrow keys</p>
-          </div>
-          <div className="ba-pairs" role="group" aria-label="Choose a job">
-            {BEFORE_AFTER.map((p, i) => (
+          ))}
+          <div className="ba-tabs" role="group" aria-label="Choose a job to compare">
+            {JOBS.map((p, i) => (
               <button
                 key={p.label}
                 type="button"
-                className="ba-pair"
+                className="ba-tab"
                 aria-pressed={i === 0}
-                data-ba-pick
-                data-before={p.beforeSrc}
-                data-after={p.afterSrc}
-                data-before-alt={p.beforeAlt}
-                data-after-alt={p.afterAlt}
+                aria-label={`Show ${p.label} before and after`}
+                data-ba-pick={i}
                 data-label={p.label}
               >
-                <Image src={p.afterSrc} alt="" width={96} height={72} sizes="96px" />
-                <span>
-                  <span className="t">{p.label}</span>
-                  <span className="s muted-text" style={{ display: "block", marginTop: 4 }}>Tap to compare before &amp; after</span>
-                </span>
+                {SHORT[p.label]}
               </button>
             ))}
           </div>
+          <span className="ba-tag l">Before</span>
+          <span className="ba-tag r">After</span>
+          <span className="ba-handle" aria-hidden="true"><span className="ba-knob"><MoveHorizontal aria-hidden="true" /></span></span>
+          <input
+            className="ba-range"
+            type="range"
+            min={0}
+            max={100}
+            defaultValue={50}
+            aria-label={`Before and after comparison, ${JOBS[0].label}: slide to reveal the before photo`}
+          />
+        </div>
+        <div className="wrap">
+          <p className="ba-hint muted-text" aria-live="polite">
+            <MoveHorizontal size={18} aria-hidden="true" /> <strong data-ba-caption>{JOBS[0].label}</strong> · drag, swipe, or use arrow keys
+          </p>
         </div>
       </div>
     </section>

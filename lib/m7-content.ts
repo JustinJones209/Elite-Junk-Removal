@@ -11,11 +11,12 @@ export const SERVICE_ZIPS = [
   "75750", "75757", "75766", "75771", "75785", "75662", "75601", "75603",
 ] as const;
 
-/** Real job photos already in /public/photos, mapped onto the six services. */
+/** Real job photos in /public/photos (plus one stock placeholder), mapped onto the six services. */
 const SERVICE_PHOTOS: Record<string, { src: string; alt: string; service: string }> = {
   "Junk Removal & Haul Off": {
-    src: "/photos/trailer.png",
-    alt: "Call Me Gone Junk Removal truck and dump trailer",
+    // Stock placeholder (Pexels #7464681, RDNE Stock project). Swap for a real job photo.
+    src: "/photos/stock/haul-off-mover.jpg",
+    alt: "Mover carrying a couch out of a home for haul-off",
     service: "Other / Not Sure",
   },
   "Full-Service Clean Outs": {

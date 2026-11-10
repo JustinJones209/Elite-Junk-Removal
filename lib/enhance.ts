@@ -149,23 +149,32 @@ function beforeAfter(root: Root) {
     };
     range.addEventListener("input", apply);
     apply();
-    box.querySelectorAll<HTMLButtonElement>("[data-ba-pick]").forEach((b) => {
-      b.addEventListener("click", () => {
-        box.querySelectorAll("[data-ba-pick]").forEach((o) => o.setAttribute("aria-pressed", "false"));
-        b.setAttribute("aria-pressed", "true");
-        if (before && b.dataset.before) {
-          before.src = b.dataset.before;
-          before.alt = b.dataset.beforeAlt || "";
-          before.removeAttribute("srcset");
+    const tabs = Array.from(box.querySelectorAll<HTMLButtonElement>("[data-ba-pick]"));
+    const layers = Array.from(box.querySelectorAll<HTMLElement>("[data-ba-layer]"));
+    const pick = (i: number, focus = false) => {
+      const b = tabs[i];
+      if (!b) return;
+      tabs.forEach((o) => o.setAttribute("aria-pressed", String(o === b)));
+      layers.forEach((l) => (l.hidden = l.dataset.baLayer !== String(i)));
+      // Legacy single-pair markup (src swap) still supported.
+      if (!layers.length) {
+        if (before && b.dataset.before) { before.src = b.dataset.before; before.alt = b.dataset.beforeAlt || ""; before.removeAttribute("srcset"); }
+        if (after && b.dataset.after) { after.src = b.dataset.after; after.alt = b.dataset.afterAlt || ""; after.removeAttribute("srcset"); }
+      }
+      const label = b.dataset.label || "";
+      if (caption) caption.textContent = label;
+      range.setAttribute("aria-label", `Before and after comparison, ${label}: slide to reveal the before photo`);
+      range.value = "50";
+      apply();
+      if (focus) b.focus();
+    };
+    tabs.forEach((b, i) => {
+      b.addEventListener("click", () => pick(i));
+      b.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+          e.preventDefault();
+          pick((i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length, true);
         }
-        if (after && b.dataset.after) {
-          after.src = b.dataset.after;
-          after.alt = b.dataset.afterAlt || "";
-          after.removeAttribute("srcset");
-        }
-        if (caption) caption.textContent = b.dataset.label || "";
-        range.value = "50";
-        apply();
       });
     });
   });
