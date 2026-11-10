@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Phone, Check } from "lucide-react";
-import { CTAButton } from "@/components/ui/CTAButton";
-import { Reveal } from "@/components/ui/Reveal";
+import { Check, Shield, Siren, Users, Repeat } from "lucide-react";
 import { breadcrumbSchema } from "@/lib/schema";
-import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
-import { PRICING_TIERS, DISCOUNTS, CLEANOUT_TYPES, ITEMS_WE_TAKE } from "@/lib/pricing";
+import { DISCOUNTS, CLEANOUT_TYPES } from "@/lib/pricing";
+import { PageHero, ClosingCTA } from "@/components/m7/Bands";
+import { Estimator } from "@/components/m7/Estimator";
+import { PriceLadder } from "@/components/m7/Pricing";
+import { WhatWeTake } from "@/components/m7/WhatWeTake";
 
 export const metadata: Metadata = {
-  title: "Pricing",
+  title: "Junk Removal Prices in Tyler, TX",
   description:
-    "Simple, upfront junk removal pricing from Call Me Gone Junk Removal — single items, partial and full trailer loads, plus discounts for military, first responders, seniors, and repeat customers.",
+    "Upfront junk removal pricing in Tyler, TX: single items from $50, partial trailer loads from $175, full 14-ft trailer loads up to $750. 10% discounts available.",
   alternates: { canonical: "/pricing" },
 };
 
@@ -18,138 +19,75 @@ const breadcrumbs = breadcrumbSchema([
   { name: "Pricing", path: "/pricing" },
 ]);
 
+const DISCOUNT_ICONS = [Shield, Siren, Users, Repeat];
+
 export default function PricingPage() {
   return (
-    <div className="bg-white dark:bg-ink">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
+      <PageHero
+        h1="Junk Removal Prices in Tyler, TX"
+        title="Simple, Fair, Upfront Pricing"
+        lede="Every job is different, so every quote is free and given upfront before we lift a thing. Here's what most jobs run."
+        crumbs={[{ name: "Home", href: "/" }, { name: "Pricing" }]}
       />
 
-      {/* Header */}
-      <div className="bg-gray-light">
-        <div className="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 md:py-20 lg:px-8">
-          <p className="mb-3 text-sm font-600 uppercase tracking-widest text-gold">
-            Pricing
-          </p>
-          <h1 className="font-heading text-4xl font-800 text-ink dark:text-white md:text-5xl">
-            Simple, Fair Pricing
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600 dark:text-white/70">
-            Every job is different, so every quote is free and given upfront
-            before we lift a thing. Here&apos;s what most jobs run.
-          </p>
-        </div>
-      </div>
-
-      {/* Tiers */}
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        <div className="grid gap-8 md:grid-cols-3">
-          {PRICING_TIERS.map((tier, i) => (
-            <Reveal key={tier.label} delay={i * 0.06}>
-              <div className="h-full rounded-2xl border border-surface-border bg-surface p-8 text-center shadow-sm transition-all hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-xl">
-                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-gold/15 text-gold">
-                  <tier.icon className="h-7 w-7" aria-hidden="true" />
-                </div>
-                <h2 className="font-heading text-xl font-700 text-ink dark:text-white">
-                  {tier.label}
-                </h2>
-                <p className="mt-2 font-heading text-2xl font-800 text-brand-gradient">
-                  {tier.priceFrom}
-                </p>
-                <p className="mt-3 text-gray-600 dark:text-white/70">{tier.description}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-        <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-gray-500 dark:text-white/60">
-          Final price depends on volume, weight, and material — we&apos;ll
-          always confirm the exact number with you before we start.
-        </p>
-
-        {/* Full-service cleanouts + what we take */}
-        <Reveal>
-          <div className="mx-auto mt-16 grid max-w-5xl gap-8 md:grid-cols-2">
-            <div className="rounded-2xl bg-gray-light p-8">
-              <h2 className="font-heading text-xl font-700 text-ink dark:text-white">
-                Full-Service Cleanouts
-              </h2>
-              <ul className="mt-5 space-y-2.5">
-                {CLEANOUT_TYPES.map((type) => (
-                  <li key={type} className="flex items-start gap-2 text-gray-700 dark:text-white/80">
-                    <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-gold" aria-hidden="true" />
-                    <span>{type}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-5 text-sm text-gray-500 dark:text-white/60">
-                No job too big or too small — we haul it all.
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-gray-light p-8">
-              <h2 className="font-heading text-xl font-700 text-ink dark:text-white">
-                We Take Almost Everything
-              </h2>
-              <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3">
-                {ITEMS_WE_TAKE.map(({ icon: Icon, label }) => (
-                  <div key={label} className="flex flex-col items-center gap-2 text-center">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold/15 text-gold">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </span>
-                    <span className="text-sm font-600 text-gray-700 dark:text-white/80">
-                      {label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Reveal>
-
-        {/* Discounts */}
-        <Reveal>
-          <div className="mx-auto mt-16 max-w-4xl rounded-2xl bg-gray-light p-8 md:p-10">
-            <h2 className="text-center font-heading text-2xl font-700 text-ink dark:text-white md:text-3xl">
-              Discounts
-            </h2>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {DISCOUNTS.map((discount) => (
-                <div key={discount.label} className="flex flex-col items-center text-center">
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gold/15 text-gold">
-                    <discount.icon className="h-6 w-6" aria-hidden="true" />
-                  </div>
-                  <p className="font-heading font-700 text-ink dark:text-white">{discount.label}</p>
-                  <p className="text-sm text-gray-600 dark:text-white/70">{discount.amount}</p>
-                </div>
-              ))}
-            </div>
-            <p className="mt-6 text-center text-sm text-gray-500 dark:text-white/60">
-              Discounts cannot be combined.
+      <section className="band band-white" aria-labelledby="est-h">
+        <div className="wrap">
+          <div className="sec-head reveal">
+            <p className="eyebrow">Load-Size Estimator</p>
+            <h2 id="est-h" className="display h-sec">How Much Does Junk Removal Cost in Tyler?</h2>
+            <p className="lede">
+              Single items start at $50. Partial trailer loads (a quarter to half of our 14-foot dump trailer) start
+              at $175. A full trailer load runs up to $750. Slide to your load size below.
             </p>
           </div>
-        </Reveal>
+          <Estimator quoteHref="/quote" />
+        </div>
+      </section>
 
-        {/* CTA */}
-        <div className="mx-auto mt-16 max-w-3xl rounded-2xl bg-ink p-8 text-center">
-          <h2 className="font-heading text-2xl font-700 text-white">
-            Get Your Exact Price
-          </h2>
-          <p className="mt-2 text-white/80">
-            Tell us what needs to go and we&apos;ll give you a free, honest
-            quote — no obligation.
-          </p>
-          <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-            <CTAButton href={`tel:${PHONE_TEL}`} size="lg">
-              <Phone className="h-5 w-5" aria-hidden="true" />
-              Call Now — {PHONE_DISPLAY}
-            </CTAButton>
-            <CTAButton href="/quote" variant="ghost" size="lg">
-              Get a Free Quote
-            </CTAButton>
+      <section className="band band-muted" aria-labelledby="tiers-h">
+        <div className="wrap">
+          <div className="sec-head reveal">
+            <p className="eyebrow">Published Prices</p>
+            <h2 id="tiers-h" className="display h-sec">Three Ways We Price a Job</h2>
+          </div>
+          <PriceLadder />
+          <p className="mt-m">Final price depends on volume, weight, and material. We&apos;ll always confirm the exact number with you before we start.</p>
+        </div>
+      </section>
+
+      <section className="band band-white" aria-labelledby="clean-h">
+        <div className="wrap why">
+          <div className="reveal">
+            <p className="eyebrow">Full-Service Cleanouts</p>
+            <h2 id="clean-h" className="display h-sec" style={{ marginTop: 14 }}>No Job Too Big or Too Small</h2>
+            <ul className="check-list mt-m" style={{ columns: 2, columnGap: 24 }}>
+              {CLEANOUT_TYPES.map((t) => (
+                <li key={t} style={{ breakInside: "avoid" }}><Check aria-hidden="true" /> {t}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="reveal">
+            <div className="hours-box" style={{ borderColor: "rgba(0,0,0,.14)", borderTopColor: "#c8890a" }}>
+              <p className="eyebrow">Discounts</p>
+              <h2 className="display" style={{ fontSize: "2rem", marginTop: 12 }}>10% Off For</h2>
+              <ul className="check-list mt-s">
+                {DISCOUNTS.map((d, i) => {
+                  const Icon = DISCOUNT_ICONS[i] ?? Check;
+                  return (
+                    <li key={d.label}><Icon aria-hidden="true" /> <span><strong>{d.label}</strong>: {d.amount}</span></li>
+                  );
+                })}
+              </ul>
+              <p className="muted-text mt-s" style={{ fontSize: 14 }}>Discounts can&apos;t be combined, but we&apos;ll always apply whichever one saves you the most.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <WhatWeTake quoteHref="/quote" />
+      <ClosingCTA heading="Get Your Exact Price Today" />
+    </>
   );
 }

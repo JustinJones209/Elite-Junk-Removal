@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { AlertCircle, Loader2 } from "lucide-react";
-import { CTAButton } from "@/components/ui/CTAButton";
+import { AlertCircle, Loader2, ArrowRight, ArrowLeft } from "lucide-react";
 import { submitQuote } from "@/app/actions";
 import {
   quoteSchema,
@@ -15,19 +14,23 @@ import {
 
 interface QuoteFormProps {
   /**
-   * "compact" hides the optional photo/date fields and uses a single column —
-   * meant for the inline homepage embed. "full" is the dedicated /quote page.
+   * "compact" hides the optional photo/date fields — meant for the inline
+   * homepage embed. "full" is the dedicated /quote page.
    */
   variant?: "full" | "compact";
 }
 
-const inputBase =
-  "w-full rounded-lg border border-gray-300 dark:border-white/15 bg-white dark:bg-ink px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/35 transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 aria-[invalid=true]:border-red-500";
-
+/**
+ * Quote request form. Submission is unchanged: same fields, same
+ * submitQuote Server Action, same /thank-you redirect. The 3-step layout is
+ * progressive enhancement (lib/enhance.ts hides steps 2-3 and adds Next/Back);
+ * without JS every field shows in one plain column.
+ */
 export function QuoteForm({ variant = "full" }: QuoteFormProps) {
   const router = useRouter();
   const [formError, setFormError] = useState<string | null>(null);
   const isFull = variant === "full";
+  const p = isFull ? "q" : "hq"; // unique ids when two forms could exist
 
   const {
     register,
@@ -57,215 +60,177 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
       }
     } catch {
       // Covers transport-level failures (e.g. a stale build's Server Action
-      // no longer matching the deployed server) that never reach the
-      // success/failure branch above.
+      // no longer matching the deployed server).
       setFormError(
         "Something went wrong sending your request. Please call us instead or try again after refreshing the page."
       );
     }
   };
 
-  /** Small helper to render a field's error message with a11y wiring. */
   const errorFor = (name: keyof QuoteFormValues) =>
     errors[name] ? (
-      <p id={`${name}-error`} role="alert" className="mt-1.5 text-sm text-red-600 dark:text-red-400">
+      <p id={`${p}-${name}-error`} role="alert" className="err">
         {errors[name]?.message as string}
       </p>
     ) : null;
 
-  const describedBy = (name: keyof QuoteFormValues) =>
-    errors[name] ? `${name}-error` : undefined;
+  const describedBy = (name: keyof QuoteFormValues, help?: string) =>
+    [errors[name] ? `${p}-${name}-error` : "", help || ""].filter(Boolean).join(" ") || undefined;
+
+  const id = (name: string) => `${p}-${name}`;
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      noValidate
-      className="rounded-2xl border border-surface-border bg-surface p-6 shadow-lg sm:p-8"
-    >
-      <div className={`grid gap-5 ${isFull ? "sm:grid-cols-2" : ""}`}>
-        {/* Name */}
-        <div className={isFull ? "" : ""}>
-          <label htmlFor="name" className="mb-1.5 block font-600 text-ink dark:text-white">
-            Name <span className="text-red-500">*</span>
-          </label>
-          <input
-            id="name"
-            type="text"
-            autoComplete="name"
-            placeholder="Your full name"
-            className={inputBase}
-            aria-invalid={!!errors.name}
-            aria-describedby={describedBy("name")}
-            {...register("name")}
-          />
-          {errorFor("name")}
-        </div>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate className="paper" data-quote aria-label="Free quote request">
+      <ol className="steps-bar" data-steps-bar hidden>
+        <li data-step-ind>1. The job</li>
+        <li data-step-ind>2. Where{isFull ? " & when" : ""}</li>
+        <li data-step-ind>3. Your info</li>
+      </ol>
 
-        {/* Phone */}
-        <div>
-          <label htmlFor="phone" className="mb-1.5 block font-600 text-ink dark:text-white">
-            Phone <span className="text-red-500">*</span>
-          </label>
-          <input
-            id="phone"
-            type="tel"
-            autoComplete="tel"
-            placeholder="(903) 555-0100"
-            className={inputBase}
-            aria-invalid={!!errors.phone}
-            aria-describedby={describedBy("phone")}
-            {...register("phone")}
-          />
-          {errorFor("phone")}
+      <fieldset data-step>
+        <legend>What needs to go?</legend>
+        <div className="fld">
+          <label htmlFor={id("serviceType")}>Service type <span className="req">(required)</span></label>
+          <select
+            id={id("serviceType")}
+            defaultValue=""
+            className="inp"
+            aria-invalid={!!errors.serviceType}
+            aria-describedby={describedBy("serviceType")}
+            {...register("serviceType")}
+          >
+            <option value="" disabled>Select a service…</option>
+            {SERVICE_TYPES.map((s) => (
+              <option key={s} value={s}>{s}</option>
+            ))}
+          </select>
+          {errorFor("serviceType")}
         </div>
-
-        {/* Email */}
-        <div>
-          <label htmlFor="email" className="mb-1.5 block font-600 text-ink dark:text-white">
-            Email <span className="text-gray-400 dark:text-white/50">(optional)</span>
-          </label>
-          <input
-            id="email"
-            type="email"
-            autoComplete="email"
-            placeholder="you@example.com"
-            className={inputBase}
-            aria-invalid={!!errors.email}
-            aria-describedby={describedBy("email")}
-            {...register("email")}
+        <div className="fld">
+          <label htmlFor={id("description")}>Describe the items <span className="req">(required)</span></label>
+          <textarea
+            id={id("description")}
+            rows={isFull ? 5 : 4}
+            placeholder="e.g. Old couch, mattress, and a few boxes from the garage."
+            className="inp"
+            aria-invalid={!!errors.description}
+            aria-describedby={describedBy("description", id("description-help"))}
+            {...register("description")}
           />
-          {errorFor("email")}
+          <p id={id("description-help")} className="help">Tip: use the item picker or load-size slider and we&apos;ll fill this in for you.</p>
+          {errorFor("description")}
         </div>
+        {isFull && (
+          <div className="fld">
+            <label htmlFor={id("photo")}>Add a photo <span className="req">(optional)</span></label>
+            {/*
+              TODO(launch): This file input is intentionally NOT wired to the
+              Server Action (same as the current site).
+            */}
+            <input id={id("photo")} name="photo" type="file" accept="image/*" className="inp" />
+            <p className="help">A photo helps us give you a faster, more accurate quote.</p>
+          </div>
+        )}
+      </fieldset>
 
-        {/* ZIP */}
-        <div>
-          <label htmlFor="zip" className="mb-1.5 block font-600 text-ink dark:text-white">
-            ZIP Code <span className="text-red-500">*</span>
-          </label>
+      <fieldset data-step>
+        <legend>Where{isFull ? " & when" : ""}?</legend>
+        <div className="fld">
+          <label htmlFor={id("zip")}>ZIP code <span className="req">(required)</span></label>
           <input
-            id="zip"
+            id={id("zip")}
             type="text"
             inputMode="numeric"
             autoComplete="postal-code"
             placeholder="75701"
             maxLength={5}
-            className={inputBase}
+            className="inp"
             aria-invalid={!!errors.zip}
             aria-describedby={describedBy("zip")}
             {...register("zip")}
           />
           {errorFor("zip")}
         </div>
-
-        {/* Service type */}
-        <div className={isFull ? "sm:col-span-2" : ""}>
-          <label htmlFor="serviceType" className="mb-1.5 block font-600 text-ink dark:text-white">
-            Service Type <span className="text-red-500">*</span>
-          </label>
-          <select
-            id="serviceType"
-            defaultValue=""
-            className={inputBase}
-            aria-invalid={!!errors.serviceType}
-            aria-describedby={describedBy("serviceType")}
-            {...register("serviceType")}
-          >
-            <option value="" disabled>
-              Select a service…
-            </option>
-            {SERVICE_TYPES.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-          {errorFor("serviceType")}
-        </div>
-
-        {/* Preferred date (full only) */}
         {isFull && (
-          <div className="sm:col-span-2">
-            <label htmlFor="preferredDate" className="mb-1.5 block font-600 text-ink dark:text-white">
-              Preferred Date <span className="text-gray-400 dark:text-white/50">(optional)</span>
-            </label>
-            <input
-              id="preferredDate"
-              type="date"
-              className={inputBase}
-              {...register("preferredDate")}
-            />
+          <div className="fld">
+            <label htmlFor={id("preferredDate")}>Preferred date <span className="req">(optional)</span></label>
+            <input id={id("preferredDate")} type="date" className="inp" {...register("preferredDate")} />
           </div>
         )}
+      </fieldset>
 
-        {/* Description */}
-        <div className={isFull ? "sm:col-span-2" : ""}>
-          <label htmlFor="description" className="mb-1.5 block font-600 text-ink dark:text-white">
-            What needs to go? <span className="text-red-500">*</span>
-          </label>
-          <textarea
-            id="description"
-            rows={isFull ? 4 : 3}
-            placeholder="e.g. Old couch, mattress, and a few boxes from the garage."
-            className={`${inputBase} resize-y`}
-            aria-invalid={!!errors.description}
-            aria-describedby={describedBy("description")}
-            {...register("description")}
+      <fieldset data-step>
+        <legend>How do we reach you?</legend>
+        <div className="fld">
+          <label htmlFor={id("name")}>Name <span className="req">(required)</span></label>
+          <input
+            id={id("name")}
+            type="text"
+            autoComplete="name"
+            className="inp"
+            aria-invalid={!!errors.name}
+            aria-describedby={describedBy("name")}
+            {...register("name")}
           />
-          {errorFor("description")}
+          {errorFor("name")}
         </div>
+        <div className="fld">
+          <label htmlFor={id("phone")}>Phone <span className="req">(required)</span></label>
+          <input
+            id={id("phone")}
+            type="tel"
+            autoComplete="tel"
+            placeholder="(903) 555-0100"
+            className="inp"
+            aria-invalid={!!errors.phone}
+            aria-describedby={describedBy("phone", id("phone-help"))}
+            {...register("phone")}
+          />
+          <p id={id("phone-help")} className="help">We call you back with your price, so we need a number.</p>
+          {errorFor("phone")}
+        </div>
+        <div className="fld">
+          <label htmlFor={id("email")}>Email <span className="req">(optional)</span></label>
+          <input
+            id={id("email")}
+            type="email"
+            autoComplete="email"
+            className="inp"
+            aria-invalid={!!errors.email}
+            aria-describedby={describedBy("email")}
+            {...register("email")}
+          />
+          {errorFor("email")}
+        </div>
+      </fieldset>
 
-        {/* Photo upload (full only, optional) */}
-        {isFull && (
-          <div className="sm:col-span-2">
-            <label htmlFor="photo" className="mb-1.5 block font-600 text-ink dark:text-white">
-              Add a Photo <span className="text-gray-400 dark:text-white/50">(optional)</span>
-            </label>
-            {/*
-              TODO(launch): This file input is intentionally NOT wired to the
-              Server Action yet. To support uploads, switch submission to a
-              FormData flow and stream the file to object storage
-              (Vercel Blob / S3 / UploadThing), then include the URL in the lead.
-            */}
-            <input
-              id="photo"
-              name="photo"
-              type="file"
-              accept="image/*"
-              className="w-full rounded-lg border border-dashed border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-ink px-4 py-3 text-sm text-gray-600 dark:text-white/60 file:mr-4 file:rounded-md file:border-0 file:bg-gold file:px-4 file:py-2 file:font-600 file:text-white hover:file:bg-gold-dark"
-            />
-            <p className="mt-1.5 text-xs text-gray-400 dark:text-white/50">
-              A photo helps us give you a faster, more accurate quote.
-            </p>
-          </div>
-        )}
-      </div>
-
-      {/* Form-level error */}
       {formError && (
-        <div
-          role="alert"
-          className="mt-5 flex items-center gap-2 rounded-lg bg-red-50 dark:bg-red-500/10 px-4 py-3 text-sm text-red-700 dark:text-red-400"
-        >
-          <AlertCircle className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+        <div role="alert" className="form-alert">
+          <AlertCircle size={18} aria-hidden="true" style={{ display: "inline", verticalAlign: "-3px", marginRight: 6 }} />
           {formError}
         </div>
       )}
 
-      <div className="mt-6">
-        <CTAButton type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+      <div className="step-nav" data-step-nav hidden>
+        <button type="button" className="btn btn-outline" data-step-back hidden>
+          <ArrowLeft aria-hidden="true" /> Back
+        </button>
+        <button type="button" className="btn btn-ink" data-step-next>
+          Next <ArrowRight aria-hidden="true" />
+        </button>
+      </div>
+      <div style={{ marginTop: 20 }} data-step-submit>
+        <button type="submit" className="btn btn-accent btn-lg" style={{ width: "100%" }} disabled={isSubmitting}>
           {isSubmitting ? (
             <>
-              <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
-              Sending…
+              <Loader2 className="animate-spin" aria-hidden="true" /> Sending…
             </>
           ) : (
             "Get My Free Quote"
           )}
-        </CTAButton>
-        <p className="mt-3 text-center text-xs text-gray-400 dark:text-white/50">
-          No obligation. We&apos;ll only use your info to prepare your quote.
-        </p>
+        </button>
       </div>
+      <p className="form-note">No obligation. We&apos;ll only use your info to prepare your quote. We call back during business hours.</p>
     </form>
   );
 }

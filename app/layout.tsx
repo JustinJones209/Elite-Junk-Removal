@@ -1,154 +1,93 @@
 import type { Metadata } from "next";
-import { Oswald, Inter, Bangers } from "next/font/google";
+import { Anton, Poppins } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { Header } from "@/components/sections/Header";
-import { Footer } from "@/components/sections/Footer";
-import { StickyCallBar } from "@/components/ui/StickyCallBar";
-import { MotionProvider } from "@/components/MotionProvider";
-import {
-  SITE_URL,
-  PHONE_TEL,
-  EMAIL,
-  BUSINESS,
-  SERVICE_AREAS,
-  SOCIALS,
-} from "@/lib/site";
+import { Header } from "@/components/m7/Header";
+import { Footer } from "@/components/m7/Footer";
+import { MobileBar, FloatingGus } from "@/components/m7/MobileBar";
+import { Enhancer } from "@/components/m7/Enhancer";
+import { SITE_URL, PHONE_TEL, EMAIL, BUSINESS, SERVICE_AREAS, SOCIALS, SERVICES } from "@/lib/site";
 
-const oswald = Oswald({
-  variable: "--font-oswald",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  display: "swap",
-});
+// M7: heavy condensed uppercase display + clean humanist body. 3 weights total.
+const anton = Anton({ variable: "--font-anton", subsets: ["latin"], weight: "400", display: "swap" });
+const poppins = Poppins({ variable: "--font-poppins", subsets: ["latin"], weight: ["400", "600"], display: "swap" });
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
-
-// Used only for the Hero H1 — a bold, brush-lettering-style display face
-// that echoes the logo's paintbrush wordmark.
-const bangers = Bangers({
-  variable: "--font-bangers",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
+const DESCRIPTION =
+  "Junk removal in Tyler, TX and East Texas. Single items from $50, partial trailer loads from $175. Same-day service available, free estimates. Call (903) 279-5441.";
 
 export const metadata: Metadata = {
-  // metadataBase makes all relative OG/canonical URLs absolute.
-  // TODO(launch): SITE_URL in lib/site.ts must be the real production domain.
   metadataBase: new URL(SITE_URL),
   title: {
-    default:
-      "Call Me Gone Junk Removal | Fast, Honest Junk Removal in Tyler & East Texas",
+    default: "Junk Removal in Tyler & East Texas | Call Me Gone Junk Removal",
     template: "%s | Call Me Gone Junk Removal",
   },
-  description:
-    "Call Me Gone Junk Removal serves Tyler, TX and all of East Texas. Same-day service, free estimates, locally owned. Call now or get a free quote online.",
-  keywords: [
-    "junk removal Tyler TX",
-    "junk removal East Texas",
-    "furniture removal Tyler",
-    "estate cleanout Tyler TX",
-    "appliance removal East Texas",
-    "Gus Morales",
-  ],
-  alternates: {
-    canonical: "/",
-  },
+  description: DESCRIPTION,
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Call Me Gone Junk Removal | Tyler & East Texas",
-    description:
-      "Fast, honest junk removal serving Tyler, TX and all of East Texas. Free estimates, same-day service, locally owned.",
+    title: "Junk Removal in Tyler & East Texas | Call Me Gone Junk Removal",
+    description: DESCRIPTION,
     type: "website",
     locale: "en_US",
     url: SITE_URL,
     siteName: "Call Me Gone Junk Removal",
-    // TODO(launch): Add a real 1200x630 OG image at /public/og-image.jpg
-    // and reference it here (e.g. images: ["/og-image.jpg"]).
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Call Me Gone Junk Removal truck and trailer" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Call Me Gone Junk Removal | Tyler & East Texas",
-    description:
-      "Fast, honest junk removal serving Tyler, TX and all of East Texas.",
+    title: "Junk Removal in Tyler & East Texas | Call Me Gone Junk Removal",
+    description: DESCRIPTION,
+    images: ["/og-image.jpg"],
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
-// LocalBusiness structured data for rich results / local SEO.
-const localBusinessSchema = {
+// HomeAndConstructionBusiness + WebSite graph. City-level address only (no storefront published).
+const BUSINESS_ID = `${SITE_URL}/#business`;
+const schema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: BUSINESS.name,
-  employee: {
-    "@type": "Person",
-    name: BUSINESS.manager,
-    jobTitle: BUSINESS.managerTitle,
-  },
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: BUSINESS.city,
-    addressRegion: BUSINESS.region,
-    addressCountry: BUSINESS.country,
-    // TODO(launch): Replace with real street address before launch.
-    streetAddress: BUSINESS.streetAddress,
-  },
-  areaServed: [...SERVICE_AREAS, "East Texas"],
-  // TODO(launch): PHONE_TEL / EMAIL / SITE_URL in lib/site.ts must be real.
-  telephone: PHONE_TEL,
-  email: EMAIL,
-  url: SITE_URL,
-  description:
-    "Call Me Gone Junk Removal provides fast, honest junk removal services across Tyler and all of East Texas. Same-day service, free estimates, locally owned.",
-  priceRange: "$$",
-  openingHoursSpecification: [
+  "@graph": [
     {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      // TODO(launch): Confirm real business hours.
-      opens: "07:00",
-      closes: "18:00",
+      "@type": "HomeAndConstructionBusiness",
+      "@id": BUSINESS_ID,
+      name: BUSINESS.name,
+      url: `${SITE_URL}/`,
+      telephone: PHONE_TEL,
+      email: EMAIL,
+      logo: `${SITE_URL}/photos/logo.png`,
+      image: `${SITE_URL}/og-image.jpg`,
+      slogan: BUSINESS.slogan,
+      description:
+        "Call Me Gone Junk Removal provides junk removal, cleanouts, and debris hauling across Tyler and East Texas. Same-day service available, free estimates, locally owned.",
+      address: { "@type": "PostalAddress", addressLocality: BUSINESS.city, addressRegion: BUSINESS.region, addressCountry: BUSINESS.country },
+      areaServed: SERVICE_AREAS.map((c) => ({ "@type": "City", name: `${c}, TX` })),
+      employee: { "@type": "Person", name: BUSINESS.manager, jobTitle: BUSINESS.managerTitle },
+      openingHoursSpecification: [
+        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "07:00", closes: "18:00" },
+        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Saturday"], opens: "08:00", closes: "16:00" },
+      ],
+      priceRange: "$50–$750",
+      sameAs: Object.values(SOCIALS).filter(Boolean),
+      makesOffer: SERVICES.map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s.title, description: s.description, provider: { "@id": BUSINESS_ID } } })),
     },
     {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Saturday"],
-      opens: "08:00",
-      closes: "16:00",
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: BUSINESS.name,
+      publisher: { "@id": BUSINESS_ID },
     },
   ],
-  // Only include non-empty social URLs.
-  sameAs: Object.values(SOCIALS).filter(Boolean),
 };
 
-// TODO(launch): Set NEXT_PUBLIC_GA_MEASUREMENT_ID once a GA4 property exists
-// (see .env.local.example) — Analytics stays off until it's set.
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${oswald.variable} ${inter.variable} ${bangers.variable} h-full`}
-    >
-      <body className="flex min-h-full flex-col antialiased">
+    <html lang="en" className={`${anton.variable} ${poppins.variable}`}>
+      <body>
         {gaMeasurementId && (
           <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
-              strategy="afterInteractive"
-            />
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`} strategy="afterInteractive" />
             <Script id="google-analytics" strategy="afterInteractive">
               {`
                 window.dataLayer = window.dataLayer || [];
@@ -159,20 +98,13 @@ export default function RootLayout({
             </Script>
           </>
         )}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-        />
-        <MotionProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          {/* Scroll clearance so the fixed StickyCallBar never covers the
-              last interactive element (e.g. the quote form's submit button)
-              at the bottom of a page on mobile. */}
-          <div className="h-20 md:hidden" aria-hidden="true" />
-          <StickyCallBar />
-        </MotionProvider>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
+        <MobileBar />
+        <FloatingGus />
+        <Enhancer />
       </body>
     </html>
   );

@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { MapPin, Phone } from "lucide-react";
-import { CTAButton } from "@/components/ui/CTAButton";
+import { ArrowRight } from "lucide-react";
 import { CITY_PAGES } from "@/lib/cities";
 import { breadcrumbSchema } from "@/lib/schema";
-import { SERVICE_REGION, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
+import { SERVICE_REGION } from "@/lib/site";
+import { SERVICE_ZIPS } from "@/lib/m7-content";
+import { PageHero, ClosingCTA } from "@/components/m7/Bands";
+import { ZipChecker } from "@/components/m7/ServiceAreaSection";
 
 export const metadata: Metadata = {
-  title: "Service Areas",
+  title: "Service Areas in East Texas",
   description:
-    "Call Me Gone Junk Removal serves Tyler, Bullard, Whitehouse, Flint, Palestine, Lindale, Jacksonville, Rusk, Longview, Kilgore, and all of East Texas.",
+    "Call Me Gone Junk Removal serves Tyler, Bullard, Whitehouse, Flint, Palestine, Lindale, Jacksonville, Rusk, Longview, Kilgore, and surrounding East Texas.",
   alternates: { canonical: "/service-areas" },
 };
 
@@ -18,96 +20,41 @@ const breadcrumbs = breadcrumbSchema([
   { name: "Service Areas", path: "/service-areas" },
 ]);
 
-// TODO(launch): Verify these ZIP codes with Gus and expand as needed.
-const ZIP_CODES = [
-  "75701", "75702", "75703", "75704", "75705", "75707", "75708", "75709",
-  "75750", "75757", "75766", "75771", "75785", "75662", "75601", "75603",
-];
-
 export default function ServiceAreasPage() {
   return (
-    <div className="bg-white dark:bg-ink">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
+      <PageHero
+        h1="Junk Removal Service Areas in East Texas"
+        title="Serving Tyler & All of East Texas"
+        lede="Based in Tyler, we cover a wide radius across East Texas. If your town isn't listed but you're nearby, reach out. Chances are we can still help."
+        crumbs={[{ name: "Home", href: "/" }, { name: "Service Areas" }]}
       />
-
-      {/* Header */}
-      <div className="bg-gray-light">
-        <div className="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 md:py-20 lg:px-8">
-          <p className="mb-3 text-sm font-600 uppercase tracking-widest text-gold">
-            Where We Work
-          </p>
-          <h1 className="font-heading text-4xl font-800 text-ink dark:text-white md:text-5xl">
-            Serving Tyler &amp; All of East Texas
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600 dark:text-white/70">
-            Based in Tyler, we cover a wide radius across East Texas. If your
-            town isn&apos;t listed but you&apos;re nearby, reach out — chances
-            are we can still help.
-          </p>
-        </div>
-      </div>
-
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        {/* Cities */}
-        <div>
-          <h2 className="mb-6 text-center font-heading text-2xl font-700 text-ink dark:text-white">
-            Cities &amp; Towns We Serve
-          </h2>
-          <ul className="mx-auto grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-            {CITY_PAGES.map((city) => (
-              <li key={city.slug}>
-                <Link
-                  href={`/service-areas/${city.slug}`}
-                  className="flex items-center gap-2 rounded-lg border border-surface-border bg-surface px-4 py-3 shadow-sm transition-colors hover:border-gold"
-                >
-                  <MapPin className="h-4 w-4 flex-shrink-0 text-gold" aria-hidden="true" />
-                  <span className="font-600 text-gray-700 dark:text-white/80">{city.name}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-5 text-center text-gray-600 dark:text-white/70">…{SERVICE_REGION}.</p>
-        </div>
-
-        {/* ZIP codes */}
-        <div className="mx-auto mt-12 max-w-4xl rounded-2xl bg-gray-light p-6 sm:p-8">
-          <h2 className="mb-4 font-heading text-xl font-700 text-ink dark:text-white">
-            ZIP Codes We Cover
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {ZIP_CODES.map((zip) => (
-              <span
-                key={zip}
-                className="rounded-full bg-surface px-3 py-1.5 text-sm font-600 text-gray-700 dark:text-white/80 shadow-sm"
-              >
-                {zip}
-              </span>
-            ))}
+      <section className="band band-white" aria-labelledby="cities-h">
+        <div className="wrap area">
+          <div>
+            <p className="eyebrow">Cities &amp; Towns</p>
+            <h2 id="cities-h" className="display h-sec" style={{ marginTop: 14 }}>Cities &amp; Towns We Serve</h2>
+            <ul className="city-list mt-m">
+              {CITY_PAGES.map((c) => (
+                <li key={c.slug}>
+                  <Link href={`/service-areas/${c.slug}`}>{c.name}<ArrowRight aria-hidden="true" /></Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-s muted-text">…{SERVICE_REGION}.</p>
           </div>
-          <p className="mt-4 text-sm text-gray-500 dark:text-white/60">
-            Don&apos;t see your ZIP code? Call us — we serve many more communities
-            across East Texas.
-          </p>
+          <ZipChecker />
         </div>
-
-        {/* CTA */}
-        <div className="bg-ink-gradient mx-auto mt-12 max-w-3xl rounded-2xl p-8 text-center">
-          <h2 className="font-heading text-2xl font-700 text-white">
-            Ready to clear the clutter?
-          </h2>
-          <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-            <CTAButton href={`tel:${PHONE_TEL}`} size="lg">
-              <Phone className="h-5 w-5" aria-hidden="true" />
-              Call Now — {PHONE_DISPLAY}
-            </CTAButton>
-            <CTAButton href="/quote" variant="ghost" size="lg">
-              Get a Free Quote
-            </CTAButton>
-          </div>
+      </section>
+      <section className="band-sm band-muted" aria-labelledby="zips-h">
+        <div className="wrap">
+          <h2 id="zips-h" className="display" style={{ fontSize: "1.8rem" }}>ZIP Codes We Cover</h2>
+          <p className="mt-s" style={{ maxWidth: "70ch" }}>{SERVICE_ZIPS.join(" · ")}</p>
+          <p className="mt-s muted-text">Don&apos;t see your ZIP code? Call us. We serve many more communities across East Texas.</p>
         </div>
-      </div>
-    </div>
+      </section>
+      <ClosingCTA heading="Ready to Clear the Clutter?" />
+    </>
   );
 }
