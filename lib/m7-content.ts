@@ -11,7 +11,7 @@ export const SERVICE_ZIPS = [
   "75750", "75757", "75766", "75771", "75785", "75662", "75601", "75603",
 ] as const;
 
-/** Real job photos in /public/photos (plus one stock placeholder), mapped onto the six services. */
+/** Photos in /public/photos (plus one stock placeholder), mapped onto the six services. */
 const SERVICE_PHOTOS: Record<string, { src: string; alt: string; service: string }> = {
   "Junk Removal & Haul Off": {
     // Stock placeholder (Pexels #7464681, RDNE Stock project). Swap for a real job photo.
@@ -21,7 +21,7 @@ const SERVICE_PHOTOS: Record<string, { src: string; alt: string; service: string
   },
   "Full-Service Clean Outs": {
     src: "/photos/garage-before.png",
-    alt: "Packed garage before a Call Me Gone cleanout",
+    alt: "Packed garage before a cleanout",
     service: "Garage / Attic Cleanout",
   },
   "Furniture & Appliance Removal": {
@@ -36,12 +36,12 @@ const SERVICE_PHOTOS: Record<string, { src: string; alt: string; service: string
   },
   "Storage Units & Estate Cleanouts": {
     src: "/photos/storage-after.png",
-    alt: "Storage unit emptied and swept after a Call Me Gone cleanout",
+    alt: "Storage unit emptied and swept after a cleanout",
     service: "Storage / Shed Cleanout",
   },
   "Residential & Commercial": {
     src: "/photos/garage-after.png",
-    alt: "Garage cleared out after a Call Me Gone job",
+    alt: "Garage cleared out after a cleanout",
     service: "Other / Not Sure",
   },
 };

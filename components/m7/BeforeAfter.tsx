@@ -22,9 +22,9 @@ export function BeforeAfter({ id = "before-after" }: { id?: string }) {
     <section id={id} className="band band-muted ba-band" aria-labelledby="ba-h">
       <div className="wrap">
         <div className="sec-head reveal">
-          <p className="eyebrow">Real East Texas Jobs</p>
+          <p className="eyebrow">Before &amp; After</p>
           <h2 id="ba-h" className="display h-sec">See It Gone. Drag the Slider.</h2>
-          <p className="lede">Real Call Me Gone jobs, photographed before and after. Pick a job, then slide to compare.</p>
+          <p className="lede">See the difference a haul-off makes — storage units, yard debris, and garages. Pick one, then slide to compare.</p>
         </div>
       </div>
       <div className="ba-full reveal" data-ba>
@@ -35,7 +35,7 @@ export function BeforeAfter({ id = "before-after" }: { id?: string }) {
               <Image className="ba-before" src={p.beforeSrc} alt={p.beforeAlt} fill sizes="100vw" />
             </div>
           ))}
-          <div className="ba-tabs" role="group" aria-label="Choose a job to compare">
+          <div className="ba-tabs" role="group" aria-label="Choose a cleanout to compare">
             {JOBS.map((p, i) => (
               <button
                 key={p.label}
