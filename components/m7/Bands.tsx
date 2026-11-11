@@ -89,7 +89,7 @@ export function MeetGus() {
       <div className="wrap gus">
         <div className="gus-photo reveal">
           <div className="frame">
-            <Image src={IMAGES.founder.src} alt={IMAGES.founder.alt} fill sizes="(min-width:1024px) 40vw, 100vw" />
+            <Image src={IMAGES.founder.src} alt={IMAGES.founder.alt} width={IMAGES.founder.width} height={IMAGES.founder.height} sizes="(min-width:1024px) 40vw, 100vw" />
           </div>
           <span className="gus-tag"><Heart aria-hidden="true" /> Locally Owned &amp; Operated</span>
         </div>
@@ -141,10 +141,10 @@ export function Reviews() {
 
 export function Process() {
   return (
-    <section id="how-it-works" className="band band-white" aria-labelledby="proc-h">
+    <section id="what-we-do" className="band band-white" aria-labelledby="proc-h">
       <div className="wrap">
         <div className="sec-head reveal">
-          <p className="eyebrow">How It Works</p>
+          <p className="eyebrow">What We Do</p>
           <h2 id="proc-h" className="display h-sec">Four Steps to a Clean Space</h2>
         </div>
         <ol className="steps reveal">

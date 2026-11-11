@@ -26,7 +26,7 @@ export function Services() {
         <div className="svc-grid">
           <Link className="svc-card lead reveal" href={href(lead.service)}>
             <div className="ph">
-              <Image src={lead.src} alt={lead.alt} fill sizes="(min-width:1080px) 50vw, 100vw" />
+              <Image src={lead.src} alt={lead.alt} width={lead.width} height={lead.height} sizes="(min-width:1080px) 50vw, 100vw" />
             </div>
             <div className="bd">
               <h3>{lead.title}</h3>
@@ -37,7 +37,7 @@ export function Services() {
           {grid.map((s) => (
             <Link key={s.title} className="svc-card reveal" href={href(s.service)}>
               <div className="ph">
-                <Image src={s.src} alt={s.alt} fill sizes="(min-width:1080px) 25vw, (min-width:720px) 50vw, 100vw" />
+                <Image src={s.src} alt={s.alt} width={s.width} height={s.height} sizes="(min-width:1080px) 25vw, (min-width:720px) 50vw, 100vw" />
               </div>
               <div className="bd">
                 <h3>{s.title}</h3>

@@ -17,6 +17,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      // Old homepage-section path and any leftover /how-it-works bookmarks.
+      { source: "/how-it-works", destination: "/#what-we-do", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

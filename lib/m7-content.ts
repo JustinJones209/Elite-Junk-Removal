@@ -12,37 +12,49 @@ export const SERVICE_ZIPS = [
 ] as const;
 
 /** Photos in /public/photos (plus one stock placeholder), mapped onto the six services. */
-const SERVICE_PHOTOS: Record<string, { src: string; alt: string; service: string }> = {
+const SERVICE_PHOTOS: Record<string, { src: string; alt: string; service: string; width: number; height: number }> = {
   "Junk Removal & Haul Off": {
     // Stock placeholder (Pexels #7464681, RDNE Stock project). Swap for a real job photo.
     src: "/photos/stock/haul-off-mover.jpg",
     alt: "Mover carrying a couch out of a home for haul-off",
     service: "Other / Not Sure",
+    width: 1600,
+    height: 1067,
   },
   "Full-Service Clean Outs": {
     src: "/photos/garage-before.png",
     alt: "Packed garage before a cleanout",
     service: "Garage / Attic Cleanout",
+    width: 1672,
+    height: 941,
   },
   "Furniture & Appliance Removal": {
     src: "/photos/storage-before.png",
     alt: "Furniture and boxes waiting to be hauled off",
     service: "Furniture Removal",
+    width: 1536,
+    height: 1024,
   },
   "Construction & Yard Debris": {
     src: "/photos/yard-before.png",
     alt: "Yard covered in branches and debris before haul-away",
     service: "Yard Waste",
+    width: 1536,
+    height: 1024,
   },
   "Storage Units & Estate Cleanouts": {
     src: "/photos/storage-after.png",
     alt: "Storage unit emptied and swept after a cleanout",
     service: "Storage / Shed Cleanout",
+    width: 1536,
+    height: 1024,
   },
   "Residential & Commercial": {
     src: "/photos/garage-after.png",
     alt: "Garage cleared out after a cleanout",
     service: "Other / Not Sure",
+    width: 1672,
+    height: 941,
   },
 };
 

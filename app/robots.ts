@@ -2,17 +2,33 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 
 /**
- * robots.txt. Allows all crawlers, disallows the noindex confirmation page,
- * and points to the sitemap.
- * TODO(launch): SITE_URL must be the real production domain.
+ * robots.txt. Search and answer-engine crawlers are allowed. The thank-you
+ * confirmation page is disallowed (it is also noindexed). Training-bot
+ * blocks are a business decision and are not set here.
  */
 export default function robots(): MetadataRoute.Robots {
+  const disallow = ["/thank-you"];
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: "/thank-you",
-    },
+    rules: [
+      {
+        userAgent: [
+          "Googlebot",
+          "Bingbot",
+          "OAI-SearchBot",
+          "ChatGPT-User",
+          "PerplexityBot",
+          "Claude-SearchBot",
+          "Claude-User",
+        ],
+        allow: "/",
+        disallow,
+      },
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow,
+      },
+    ],
     sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

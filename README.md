@@ -27,7 +27,7 @@ app/
   service-areas/        Map + city/ZIP list
   sitemap.ts, robots.ts SEO file conventions
 components/
-  sections/             Header, Hero, Services, HowItWorks, BeforeAfter, WhyChooseUs,
+  sections/             Header, Hero, Services, WhatWeDo, BeforeAfter, WhyChooseUs,
                         FounderStory, Testimonials, ServiceArea, FAQPreview, FinalCTA, Footer
   ui/                   CTAButton, SectionHeading, TrustBadgeRow, StickyCallBar, ServiceCard,
                         ProcessStep, BeforeAfterSlider, TestimonialCard/Carousel, FAQAccordion,

@@ -14,7 +14,8 @@ export function Hero() {
       <Image
         src="/photos/stock/hero-crew-loading.jpg"
         alt="Two-person crew lifting a couch into the back of a van for haul-away"
-        fill
+        width={2560}
+        height={1707}
         priority
         fetchPriority="high"
         quality={60}

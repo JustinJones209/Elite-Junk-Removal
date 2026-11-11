@@ -31,8 +31,8 @@ export function BeforeAfter({ id = "before-after" }: { id?: string }) {
         <div className="ba-stage" style={{ ["--pos" as string]: "50%" }}>
           {JOBS.map((p, i) => (
             <div key={p.label} className="ba-pair-layer" data-ba-layer={i} hidden={i !== 0}>
-              <Image src={p.afterSrc} alt={p.afterAlt} fill sizes="100vw" />
-              <Image className="ba-before" src={p.beforeSrc} alt={p.beforeAlt} fill sizes="100vw" />
+              <Image src={p.afterSrc} alt={p.afterAlt} width={p.width} height={p.height} sizes="100vw" />
+              <Image className="ba-before" src={p.beforeSrc} alt={p.beforeAlt} width={p.width} height={p.height} sizes="100vw" />
             </div>
           ))}
           <div className="ba-tabs" role="group" aria-label="Choose a cleanout to compare">

@@ -7,6 +7,8 @@ export const IMAGES = {
   founder: {
     src: "/photos/gus.jpg",
     alt: "Gus Morales of Call Me Gone Junk Removal",
+    width: 2048,
+    height: 2048,
   },
 } as const;
 
@@ -20,6 +22,8 @@ export const BEFORE_AFTER = [
     afterSrc: "/photos/garage-after.png",
     beforeAlt: "Garage packed with clutter, before a cleanout",
     afterAlt: "The same garage emptied and swept after a cleanout",
+    width: 1672,
+    height: 941,
   },
   {
     label: "Storage Unit Cleanout",
@@ -27,6 +31,8 @@ export const BEFORE_AFTER = [
     afterSrc: "/photos/storage-after.png",
     beforeAlt: "Storage unit packed with furniture and boxes, before a cleanout",
     afterAlt: "The same storage unit emptied after a cleanout",
+    width: 1536,
+    height: 1024,
   },
   {
     label: "Yard Debris Haul",
@@ -34,5 +40,7 @@ export const BEFORE_AFTER = [
     afterSrc: "/photos/yard-after.png",
     beforeAlt: "Yard covered in branches and storm debris, before haul-off",
     afterAlt: "The same yard cleared after the debris was hauled off",
+    width: 1536,
+    height: 1024,
   },
 ] as const;
