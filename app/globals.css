@@ -456,23 +456,44 @@ legend { font-family: var(--font-display); text-transform: uppercase; font-size:
    Matches the credit on https://apextechdesigns.com/ (24px lockup, bottom of footer).
    Use chalk SVG on dark footers, ink SVG on light footers. */
 
+/* Site by Apex Tech Designs — footer credit
+   Source: /workspace/knowledge/house-style/apex-credit/
+   Chalk SVG on dark footers, ink SVG on light footers.
+
+   The SVG viewBox includes descender padding so the "y" in "by" is never clipped.
+   Do not set overflow:hidden, a tight line-height, or a height that crops the
+   image on .apex-credit or its img/svg.
+*/
+
 .apex-credit {
-  line-height: 0;
+  line-height: 1;
   display: inline-block;
   text-decoration: none;
   color: inherit;
   opacity: 0.92;
   flex: 0 0 auto;
+  overflow: visible;
 }
 .apex-credit:hover,
 .apex-credit:focus-visible {
   opacity: 1;
 }
-.apex-credit img {
-  height: 24px;
+.apex-credit img,
+.apex-credit svg {
+  height: 30px;
   width: auto;
+  max-width: 100%;
   display: block;
   border: 0;
+  overflow: visible;
+  object-fit: contain;
+  object-position: left center;
+}
+@media (min-width: 720px) {
+  .apex-credit img,
+  .apex-credit svg {
+    height: 32px;
+  }
 }
 .apex-credit:focus-visible {
   outline: 2px solid currentColor;

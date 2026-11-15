@@ -19,7 +19,7 @@ export function ApexCredit({ variant = "chalk" }: Props) {
       aria-label="Site by Apex Tech Designs"
     >
       {/* Native img so the SVG is not run through a framework image optimizer. */}
-      <img src={src} alt="Site by Apex Tech Designs" width={270} height={24} />
+      <img src={src} alt="Site by Apex Tech Designs" width={270} height={28} />
     </a>
   );
 }
