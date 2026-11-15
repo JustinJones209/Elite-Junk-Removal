@@ -420,6 +420,10 @@ legend { font-family: var(--font-display); text-transform: uppercase; font-size:
 @media (min-width: 768px) { .mbar, .mbar-spacer { display: none; } }
 .fgus { position: fixed; right: 22px; bottom: 22px; z-index: 55; display: none; }
 @media (min-width: 768px) { .fgus { display: block; } }
+/* Keep the footer credit clear of the fixed .fgus chip (hidden below 768px). */
+@media (min-width: 768px) {
+  .site-footer { padding-bottom: 6.25rem; }
+}
 .fgus-btn { display: flex; align-items: center; gap: 12px; padding: 8px 18px 8px 8px; background: var(--color-ink); color: #fff; border: 0; border-radius: var(--radius); cursor: pointer; font: inherit; font-weight: 600; box-shadow: 0 6px 24px rgba(0,0,0,.25); }
 .fgus-btn img { width: 44px; height: 44px; object-fit: cover; border-radius: 2px; }
 .fgus-btn .l1 { display: block; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-amber); text-align: left; }
