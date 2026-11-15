@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { CITY_PAGES } from "@/lib/cities";
+import { ApexCredit } from "@/components/m7/ApexCredit";
 import { PHONE_DISPLAY, PHONE_TEL, EMAIL, BUSINESS, SOCIALS, SERVICES } from "@/lib/site";
 
 function FacebookIcon() {
@@ -60,6 +61,7 @@ export function Footer() {
       <div className="wrap legal">
         <span>&copy; {year} {BUSINESS.name}. All rights reserved. Locally owned &amp; operated.</span>
         <span><Link href="/privacy">Privacy Policy</Link> · <Link href="/faq">FAQ</Link> · <Link href="/quote">Get a Free Quote</Link></span>
+        <ApexCredit variant="chalk" />
       </div>
     </footer>
   );

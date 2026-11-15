@@ -449,3 +449,44 @@ legend { font-family: var(--font-display); text-transform: uppercase; font-size:
 
 /* Legacy utility used by the unchanged /thank-you page: gold text needs the darker brand gold for AA on white. */
 .text-gold { color: var(--color-gold-dark); }
+
+
+/* Site by Apex Tech Designs — footer credit
+   Source: /workspace/knowledge/house-style/apex-credit/
+   Matches the credit on https://apextechdesigns.com/ (24px lockup, bottom of footer).
+   Use chalk SVG on dark footers, ink SVG on light footers. */
+
+.apex-credit {
+  line-height: 0;
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.92;
+  flex: 0 0 auto;
+}
+.apex-credit:hover,
+.apex-credit:focus-visible {
+  opacity: 1;
+}
+.apex-credit img {
+  height: 24px;
+  width: auto;
+  display: block;
+  border: 0;
+}
+.apex-credit:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* Optional: when the credit sits in a copyright/legal row that already
+   uses flex + space-between, this keeps it right-aligned on desktop and
+   stacked underneath on small screens, same as the Apex site. */
+.apex-credit--end {
+  margin-left: auto;
+}
+@media (max-width: 479px) {
+  .apex-credit--end {
+    margin-left: 0;
+  }
+}
