@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { AlertCircle, Loader2, ArrowRight, ArrowLeft } from "lucide-react";
-import { submitQuote } from "@/app/actions";
+import { getFormToken, submitQuote } from "@/app/actions";
 import {
   quoteSchema,
   SERVICE_TYPES,
@@ -31,6 +31,12 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
   const [formError, setFormError] = useState<string | null>(null);
   const isFull = variant === "full";
   const p = isFull ? "q" : "hq"; // unique ids when two forms could exist
+  // Spam guard: signed form timer (checked on the server) + hidden honeypot.
+  const tokenRef = useRef<string>("");
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    getFormToken().then((t) => { tokenRef.current = t; }).catch(() => {});
+  }, []);
 
   const {
     register,
@@ -52,7 +58,11 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
   const onSubmit = async (values: QuoteFormValues) => {
     setFormError(null);
     try {
-      const result = await submitQuote(values);
+      const result = await submitQuote({
+        ...values,
+        website: honeypotRef.current?.value ?? "",
+        _ft: tokenRef.current,
+      });
       if (result.success) {
         router.push("/thank-you");
       } else {
@@ -81,6 +91,12 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="paper" data-quote aria-label="Free quote request">
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}>
+        <label>
+          Leave this empty
+          <input ref={honeypotRef} type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" />
+        </label>
+      </div>
       <ol className="steps-bar" data-steps-bar hidden>
         <li data-step-ind>1. The job</li>
         <li data-step-ind>2. Where{isFull ? " & when" : ""}</li>
@@ -230,6 +246,7 @@ export function QuoteForm({ variant = "full" }: QuoteFormProps) {
           )}
         </button>
       </div>
+      <p className="form-note form-note--solicit">Customer inquiries only, no sales solicitations.</p>
       <p className="form-note">No obligation. We&apos;ll only use your info to prepare your quote. We call back during business hours.</p>
     </form>
   );

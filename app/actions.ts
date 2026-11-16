@@ -1,7 +1,16 @@
 "use server";
 
+import { headers } from "next/headers";
 import { quoteSchema, type QuoteActionResult } from "@/lib/quote-schema";
-import { EMAIL } from "@/lib/site";
+import { EMAIL, PHONE_DISPLAY } from "@/lib/site";
+import {
+  checkToken,
+  htmlNote,
+  issueToken,
+  logLine,
+  rateLimited,
+  scoreSubmission,
+} from "@/lib/form-guard";
 
 /**
  * Server Action that receives a quote request and emails it to the business.
@@ -33,7 +42,38 @@ function escapeHtml(value: string): string {
     .replace(/"/g, "&quot;");
 }
 
+/** Signed form-timer token for the quote form (see lib/form-guard.ts). */
+export async function getFormToken(): Promise<string> {
+  return issueToken();
+}
+
 export async function submitQuote(values: unknown): Promise<QuoteActionResult> {
+  const raw = (values && typeof values === "object" ? values : {}) as Record<string, unknown>;
+
+  // 1) Honeypot: real visitors never fill this hidden field. Pretend success.
+  if (typeof raw.website === "string" && raw.website.trim() !== "") {
+    logLine("call-me-gone", "honeypot", { score: 0, reasons: [] });
+    return { success: true, message: "Thanks! We received your request and will be in touch shortly." };
+  }
+
+  // 2) Signed time-to-submit check: under 3 seconds is a bot.
+  const timer = checkToken(raw._ft);
+  if (timer.status === "too_fast") {
+    logLine("call-me-gone", "rejected-too-fast", { score: 0, reasons: [`submitted in ${timer.age}s`] });
+    return {
+      success: false,
+      message: `That was quick! Please wait a few seconds and press send again, or call ${PHONE_DISPLAY}.`,
+    };
+  }
+
+  // 3) IP rate limit (5 per 15 minutes, 20 per day).
+  const h = await headers();
+  const ip = (h.get("x-forwarded-for") || h.get("x-real-ip") || "unknown").split(",")[0].trim();
+  if (rateLimited(ip)) {
+    logLine("call-me-gone", "rate-limited", { score: 0, reasons: [] });
+    return { success: false, message: `Too many requests from this connection. Please call ${PHONE_DISPLAY}.` };
+  }
+
   const parsed = quoteSchema.safeParse(values);
 
   if (!parsed.success) {
@@ -44,6 +84,12 @@ export async function submitQuote(values: unknown): Promise<QuoteActionResult> {
   }
 
   const lead = parsed.data;
+
+  // 4) Solicitation score. Flagged = still delivered, with a subject prefix.
+  const guard = scoreSubmission(
+    { name: lead.name, email: lead.email, phone: lead.phone, message: lead.description },
+    { profile: "trade", tokenStatus: timer.status }
+  );
   const receivedAt = new Date().toLocaleString("en-US", {
     timeZone: "America/Chicago",
   });
@@ -69,7 +115,9 @@ export async function submitQuote(values: unknown): Promise<QuoteActionResult> {
     console.log("[QUOTE LEAD — email not configured, logging instead]", {
       ...lead,
       receivedAt,
+      possibleSpam: guard.flagged,
     });
+    logLine("call-me-gone", guard.flagged ? "logged-flagged" : "logged-clean", guard);
     return {
       success: true,
       message: "Thanks! We received your request and will be in touch shortly.",
@@ -89,9 +137,11 @@ export async function submitQuote(values: unknown): Promise<QuoteActionResult> {
         )
         .join("")}
     </table>
+    ${htmlNote(guard)}
   `;
 
-  const text = rows.map(([label, val]) => `${label}: ${val}`).join("\n");
+  const text = rows.map(([label, val]) => `${label}: ${val}`).join("\n") +
+    (guard.flagged ? `\n\nPossible spam or sales pitch (score ${guard.score}): ${guard.reasons.join("; ")}` : "");
 
   try {
     const res = await fetch("https://api.resend.com/emails", {
@@ -105,7 +155,7 @@ export async function submitQuote(values: unknown): Promise<QuoteActionResult> {
         to: [toEmail],
         // Let Gus hit "reply" to reach the customer directly (if they gave an email).
         reply_to: lead.email || undefined,
-        subject: `New quote request — ${lead.name} (${lead.serviceType})`,
+        subject: `${guard.flagged ? "[Possible Spam] " : ""}New quote request — ${lead.name} (${lead.serviceType})`,
         html,
         text,
       }),
@@ -114,6 +164,7 @@ export async function submitQuote(values: unknown): Promise<QuoteActionResult> {
     if (!res.ok) {
       const detail = await res.text();
       console.error("[QUOTE LEAD] Resend error:", res.status, detail);
+      logLine("call-me-gone", "send-failed", guard);
       return {
         success: false,
         message:
@@ -129,6 +180,7 @@ export async function submitQuote(values: unknown): Promise<QuoteActionResult> {
     };
   }
 
+  logLine("call-me-gone", guard.flagged ? "sent-flagged" : "sent-clean", guard);
   return {
     success: true,
     message: "Thanks! We received your request and will be in touch shortly.",
