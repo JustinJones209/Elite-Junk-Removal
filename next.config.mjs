@@ -1,5 +1,7 @@
-import type { NextConfig } from "next";
 
+// Plain .mjs (not .ts): Hostinger's build host has an old glibc, so Next 16.4
+// falls back to WASM SWC, which cannot load a TypeScript config.
+//
 // Security headers (Apex WEBSITE-SECURITY-STANDARD, 2026-11-16). This is a
 // Node.js app on Hostinger, so headers are set here rather than in .htaccess.
 // The CSP is conservative: it does not restrict scripts, styles, fonts, images
@@ -20,7 +22,8 @@ const securityHeaders = [
   },
 ];
 
-const nextConfig: NextConfig = {
+/** @type {import("next").NextConfig} */
+const nextConfig = {
   poweredByHeader: false,
   // Lets the dev server serve its hot-reload assets when opened from another
   // device on the LAN (e.g. previewing on a phone via the local IP).
